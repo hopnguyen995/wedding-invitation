@@ -12,10 +12,13 @@ const TestAos = () => {
 
   return (
     <div>
-      <h2 data-aos="fade-up">Hello, AOS!</h2>
-      <p data-aos="fade-up" data-aos-delay="100">
-        Scroll down to see more.
-      </p>
+      <h2 data-aos="fade-up">
+        Hoàng Hiệp{" "}
+        <span>
+          <i className="fas fa-heart text-[red]"></i>
+        </span>{" "}
+        Minh Nguyệt
+      </h2>
     </div>
   );
 };

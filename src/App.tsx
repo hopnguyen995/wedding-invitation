@@ -1,13 +1,17 @@
+import ConfettiCongratulations from "./components/ConfettiCongratulations";
 import MusicPlayer from "./components/music";
+import MessengerButton from "./components/redirectMessenger";
 import TestAos from "./components/testAos";
-import TestConfetti from "./components/testConfetti";
 
 function App() {
   return (
     <>
-      <TestAos />
-      <TestConfetti />
-      <MusicPlayer />
+      <ConfettiCongratulations />
+      <div>
+        <MusicPlayer />
+        <TestAos />
+        <MessengerButton />
+      </div>
     </>
   );
 }

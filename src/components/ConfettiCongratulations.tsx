@@ -1,7 +1,7 @@
 import { useWindowSize } from "react-use";
 import Confetti from "react-confetti";
 
-const TestConfetti = () => {
+const ConfettiCongratulations = () => {
   const { width, height } = useWindowSize();
 
   const drawFlower = (ctx: any) => {
@@ -38,4 +38,4 @@ const TestConfetti = () => {
   );
 };
 
-export default TestConfetti;
+export default ConfettiCongratulations;
