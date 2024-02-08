@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <ConfettiCongratulations />
-      <div>
+      <div className="flex flex-col gap-5 w-[300px] mx-auto pt-[100px]">
         <MusicPlayer />
         <TestAos />
         <MessengerButton />
