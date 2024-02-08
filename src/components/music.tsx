@@ -20,11 +20,7 @@ const MusicPlayer = () => {
 
   return (
     <div>
-      <audio
-        ref={audioRef}
-        src="src/assets/audio/beautiful-in-white-bachata.mp3"
-        autoPlay={isPlaying}
-      />
+      <audio ref={audioRef} src="audio/beautiful-in-white-bachata.mp3" autoPlay={isPlaying} />
       <button onClick={togglePlayPause}>{isPlaying ? "Pause" : "Play"}</button>
     </div>
   );
