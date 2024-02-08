@@ -1,4 +1,3 @@
-import React from "react";
 import { useWindowSize } from "react-use";
 import Confetti from "react-confetti";
 
@@ -12,7 +11,6 @@ const TestConfetti = () => {
     ctx.fillStyle = "pink";
     ctx.fill();
     ctx.closePath();
-
     // Vẽ cánh hoa
     for (let i = 0; i < 5; i++) {
       ctx.beginPath();
