@@ -12,9 +12,9 @@ export default function CarouselHero() {
     dots: false,
     infinite: true,
     speed: 1000, // Tốc độ chuyển động (ms)
-    autoplay: true, // Tự chuyển động
-    autoplaySpeed: 5000, // Thời gian giữa các slide (ms)
     fade: true, // Hiệu ứng làm mờ
+    autoplaySpeed: 5000, // Thời gian giữa các slide (ms)
+    autoplay: true,
     arrows: false,
   };
 
@@ -51,9 +51,9 @@ export default function CarouselHero() {
             <p className="text-center text-[#fff] font-medium text-[10px] sm:text-[12px] lg:text-[20px] uppercase">
               save the date
             </p>
-            <p className="text-great-vibes text-[24px] sm:text-[40px] lg:text-[60px] xl:text-[80px] text-center text-[#fff] pt-3">
+            <h1 className="text-great-vibes text-[24px] sm:text-[40px] lg:text-[60px] xl:text-[80px] text-center text-[#fff] pt-3">
               Hoàng Hiệp & Minh Nguyệt
-            </p>
+            </h1>
             <div className="text-center">
               <p className="text-[#fff] font-medium text-[12px] sm:text-[14px] lg:text-[20px] border-b-2 border-solid border-white inline-block">
                 February 25, 2024

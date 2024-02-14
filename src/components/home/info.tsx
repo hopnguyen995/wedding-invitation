@@ -1,0 +1,55 @@
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+export interface IInfoProps {
+  urlImg: string;
+  groom: boolean;
+}
+
+export default function Info(props: IInfoProps) {
+  const { urlImg, groom } = props;
+
+  useEffect(() => {
+    AOS.init();
+
+    // Cài đặt các hiệu ứng AOS tại đây (ví dụ: fade-up)
+    AOS.refresh(); // Cập nhật AOS khi component được render lại
+  }, []);
+
+  return (
+    <div className="info-groom flex lg:w-[60%] lg:mx-auto p-3">
+      <div
+        className={`img-groom w-[50%] ${groom ? "order-1" : "order-2"}`}
+        data-aos={groom ? "fade-right" : "fade-left"}
+      >
+        <img
+          className="w-[300px] h-[300px] object-cover rounded-lg"
+          src={urlImg}
+          alt={groom ? "groom" : "bride"}
+        />
+      </div>
+      <div
+        className={`story w-[50%] p-3 ${groom ? "order-2" : "order-1"}`}
+        data-aos={groom ? "fade-left" : "fade-right"}
+      >
+        <h2 className="text-[12px] font-medium">
+          {groom ? "Chú rể: Hoàng Hiệp" : "Cô dâu: Minh Nguyệt"}
+        </h2>
+        <p className="text-[10px] text-gray-500 italic py-2">
+          {groom
+            ? `Là bác sĩ nha khoa hiện đang công tác tại một phòng khám nha khoa ở Quận 1 thành phồ Hồ
+          Chí Minh. Là một người hiền lành và ít nói. Luôn coi trọng tình cảm và yêu thương gia
+          đình. Với anh: "Gia đình là điểm tựa vững chắc nhất và là bến đỗ bình yên không đâu sánh
+          bằng đối với mỗi con người. Đó luôn là nơi tràn ngập tình yêu thương để ta trở về."`
+            : `Cô gái đến từ xứ Huế mộng mơ, hiện đang sinh sống và làm việc tại Sài Gòn. Sau khi tốt
+          nghiệp Học viện Báo chí và Tuyên truyền, quyết tâm theo đuổi đam mê làm phóng viên du
+          lịch. Là một người hay cười nhưng lại sống nội tâm, thích đọc sách, trồng cây và yêu
+          thiên nhiên. Ngoài ra còn rất thích vẽ vời, nuôi mèo và nuôi ước mơ có cho mình một vườn
+          hồng khoe sắc.`}
+        </p>
+        <p className="text-great-vibes">{groom ? "Hoàng Hiệp" : "Minh Nguyệt"}</p>
+      </div>
+    </div>
+  );
+}
