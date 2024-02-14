@@ -6,3 +6,19 @@
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   font-family: "Roboto", sans-serif;
 }
+
+@keyframes colorChange {
+  0% {
+    background-color: #fff;
+  }
+  50% {
+    background-color: #f9a8d4;
+  }
+  100% {
+    background-color: #fff;
+  }
+}
+
+.button-music {
+  animation: colorChange 2s linear infinite;
+}
