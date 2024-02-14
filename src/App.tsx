@@ -5,9 +5,9 @@ import MusicPlayer from "./components/music";
 function App() {
   return (
     <div>
-      <ConfettiCongratulations />
       <Home />
       <MusicPlayer />
+      <ConfettiCongratulations />
     </div>
   );
 }

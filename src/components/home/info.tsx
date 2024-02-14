@@ -18,25 +18,27 @@ export default function Info(props: IInfoProps) {
   }, []);
 
   return (
-    <div className="info-groom flex lg:w-[60%] lg:mx-auto p-3">
+    <div className="info-groom md:flex lg:w-[60%] lg:mx-auto p-4 bg-[#f7faf9]">
       <div
-        className={`img-groom w-[50%] ${groom ? "order-1" : "order-2"}`}
+        className={`img-groom md:w-[50%] ${groom ? "order-1" : "order-2"}`}
         data-aos={groom ? "fade-right" : "fade-left"}
       >
         <img
-          className="w-[300px] h-[300px] object-cover rounded-lg"
+          className="w-full object-cover rounded-lg border-[2px] border-solid"
           src={urlImg}
           alt={groom ? "groom" : "bride"}
         />
       </div>
       <div
-        className={`story w-[50%] p-3 ${groom ? "order-2" : "order-1"}`}
+        className={`story md:w-[50%] md:flex-col md:my-auto md:px-3 py-2 ${
+          groom ? "order-2" : "order-1"
+        }`}
         data-aos={groom ? "fade-left" : "fade-right"}
       >
-        <h2 className="text-[12px] font-medium">
+        <h2 className="text-[12px] md:text-[16px] font-medium">
           {groom ? "Chú rể: Hoàng Hiệp" : "Cô dâu: Minh Nguyệt"}
         </h2>
-        <p className="text-[10px] text-gray-500 italic py-2">
+        <p className="text-[12px] md:text-[16px] text-gray-500 italic py-2">
           {groom
             ? `Là bác sĩ nha khoa hiện đang công tác tại một phòng khám nha khoa ở Quận 1 thành phồ Hồ
           Chí Minh. Là một người hiền lành và ít nói. Luôn coi trọng tình cảm và yêu thương gia
@@ -48,7 +50,9 @@ export default function Info(props: IInfoProps) {
           thiên nhiên. Ngoài ra còn rất thích vẽ vời, nuôi mèo và nuôi ước mơ có cho mình một vườn
           hồng khoe sắc.`}
         </p>
-        <p className="text-great-vibes">{groom ? "Hoàng Hiệp" : "Minh Nguyệt"}</p>
+        <p className="text-great-vibes text-[14px] md:text-[18px] lg:text-[24px]">
+          {groom ? "Hoàng Hiệp" : "Minh Nguyệt"}
+        </p>
       </div>
     </div>
   );

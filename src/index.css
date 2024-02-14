@@ -13,6 +13,18 @@
   font-style: normal;
 }
 
+.text-married {
+  font-family: "Marmelad", sans-serif;
+  /* font-weight: 400; */
+  font-style: normal;
+}
+
+.text-married-signature {
+  font-family: "Oooh Baby", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 @keyframes colorChange {
   0% {
     background-color: transparent;
@@ -47,4 +59,23 @@
 }
 
 .section-hero .wrapper-hero::after {
+}
+
+.section-countdown {
+  background-image: url(./assets/images/bgr-countdown.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-position: 50% 50%;
+}
+
+.section-countdown::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  z-index: 1;
 }

@@ -25,16 +25,16 @@ const ConfettiCongratulations = () => {
   };
 
   return (
-    <>
+    <div className="">
       <Confetti
-        width={width}
+        width={width - 20}
         height={height}
         numberOfPieces={10}
         wind={0}
         gravity={0.02}
         drawShape={(ctx) => drawFlower(ctx)}
       />
-    </>
+    </div>
   );
 };
 
