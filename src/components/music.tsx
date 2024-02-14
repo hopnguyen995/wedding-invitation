@@ -19,7 +19,7 @@ const MusicPlayer = () => {
   };
 
   return (
-    <div className="fixed bottom-[20px] left-[20px]">
+    <div className="fixed bottom-[20px] left-[20px] z-50">
       <div className="relative button-music w-[46px] h-[46px] rounded-full">
         <div className="absolute left-[3px] top-[3px]">
           <audio ref={audioRef} src="audio/beautiful-in-white-bachata.mp3" autoPlay={isPlaying} />

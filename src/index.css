@@ -7,18 +7,44 @@
   font-family: "Roboto", sans-serif;
 }
 
+.text-great-vibes {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 @keyframes colorChange {
   0% {
-    background-color: #fff;
+    background-color: transparent;
+  }
+  25% {
+    background-color: #f9a8d4;
   }
   50% {
+    background-color: #fff;
+  }
+  75% {
     background-color: #f9a8d4;
   }
   100% {
-    background-color: #fff;
+    background-color: transparent;
   }
 }
 
 .button-music {
   animation: colorChange 2s linear infinite;
+}
+
+.section-hero .carousel-hero {
+}
+
+.section-hero .carousel-hero img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.section-hero .carousel-hero {
+}
+
+.section-hero .wrapper-hero::after {
 }

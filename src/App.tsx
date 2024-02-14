@@ -1,17 +1,13 @@
 import ConfettiCongratulations from "./components/ConfettiCongratulations";
-import CountdownTimer from "./components/countdown";
+import Home from "./components/home/home";
 import MusicPlayer from "./components/music";
-import MessengerButton from "./components/redirectMessenger";
-import TestAos from "./components/testAos";
 
 function App() {
   return (
-    <div className="">
+    <div>
       <ConfettiCongratulations />
+      <Home />
       <MusicPlayer />
-      <CountdownTimer />
-      <TestAos />
-      <MessengerButton />
     </div>
   );
 }
