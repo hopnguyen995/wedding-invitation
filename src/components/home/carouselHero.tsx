@@ -1,4 +1,3 @@
-import * as React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,7 +7,7 @@ import slide3 from "../../assets/images/zs-slideshow-hero-3.jpg";
 
 export interface ICarouselHeroProps {}
 
-export default function CarouselHero(props: ICarouselHeroProps) {
+export default function CarouselHero() {
   const settings = {
     dots: false,
     infinite: true,
