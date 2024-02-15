@@ -18,11 +18,6 @@ export default function Home() {
         <Info urlImg={imgBride} groom={false} />
       </div> */}
       <CountdownTimer />
-      <CountdownTimer />
-      <CountdownTimer />
-      <CountdownTimer />
-      <CountdownTimer />
-      <CountdownTimer />
       {/* <MessengerButton /> */}
     </div>
   );
