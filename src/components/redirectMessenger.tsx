@@ -1,16 +1,19 @@
-// import { isMobile } from "react-device-detect";
+import { isMobile } from "react-device-detect";
 
 const MessengerButton = () => {
-  // const userThreadId = "USER_ID"; // Thay USER_ID bằng ID người dùng thích hợp
-  // const messengerLink = isMobile
-  //   ? `fb-messenger://user-thread/${userThreadId}`
-  //   : `https://www.messenger.com/t/${userThreadId}`;
+  const messengerLink = isMobile
+    ? `intent://open-messenger?playstore=com.facebook.orca&source=web`
+    : `https://m.me/yourfacebookprofilename`;
 
   return (
     <div>
       <a
-        // href={messengerLink}
-        href={`https://m.me/yourfacebookprofilename`}
+        href={messengerLink}
+        // href={
+        //   true
+        //     ? `intent://open-messenger?playstore=com.facebook.orca&source=web`
+        //     : `https://m.me/yourfacebookprofilename`
+        // }
         target="_blank"
         rel="noopener noreferrer"
         className="p-[10px] bg-blue-500 text-[#fff] font-medium rounded-lg"
