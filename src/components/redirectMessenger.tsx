@@ -1,9 +1,7 @@
 import { isMobile } from "react-device-detect";
 
 const MessengerButton = () => {
-  const messengerLink = isMobile
-    ? `intent://open-messenger?playstore=com.facebook.orca&source=web`
-    : `https://m.me/yourfacebookprofilename`;
+  const messengerLink = isMobile ? `fb-messenger://` : `https://m.me/yourfacebookprofilename`;
 
   return (
     <div>
