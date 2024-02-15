@@ -2,13 +2,12 @@ import { isMobile } from "react-device-detect";
 
 const MessengerButton = () => {
   const openMessenger = () => {
-    if (isMobile) {
-      // Mở ứng dụng Messenger trên điện thoại
-      window.location.href = "fb-messenger://user-thread/USER_ID";
-    } else {
-      // Mở Messenger trong trình duyệt trên máy tính
-      window.open("https://www.messenger.com/t/USER_ID", "_blank");
-    }
+    const userThreadId = "USER_ID"; // Thay USER_ID bằng ID người dùng thích hợp
+    const messengerLink = isMobile
+      ? `fb-messenger://user-thread/${userThreadId}`
+      : `https://www.messenger.com/t/${userThreadId}`;
+
+    window.location.href = messengerLink;
   };
 
   return (
