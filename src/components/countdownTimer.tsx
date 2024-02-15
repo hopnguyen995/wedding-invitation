@@ -33,7 +33,7 @@ const CountdownTimer = () => {
   }, [targetDate]);
 
   return (
-    <div className="section-countdown mt-8 p-32">
+    <div className="section-countdown mt-8 h-[250px]">
       <div className="md:flex md:justify-around md:items-center absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-[60%]">
         <div className="text-great-vibes text-[#fff] p-3">
           <p className="text-[20px] lg:text-[30px]">Counting the minutes for.....</p>

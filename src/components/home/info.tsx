@@ -12,6 +12,7 @@ export default function Info(props: IInfoProps) {
 
   useEffect(() => {
     AOS.init();
+
     // Cài đặt các hiệu ứng AOS tại đây (ví dụ: fade-up)
     AOS.refresh(); // Cập nhật AOS khi component được render lại
   }, []);
@@ -20,7 +21,8 @@ export default function Info(props: IInfoProps) {
     <div className="info-groom md:flex lg:w-[60%] lg:mx-auto p-4 bg-[#f7faf9]">
       <div
         className={`img-groom md:w-[50%] ${groom ? "order-1" : "order-2"}`}
-        data-aos={groom ? "zoom-in-right" : "zoom-in-left"}
+        data-aos={groom ? "flip-right" : "flip-left"}
+        data-aos-duration="3000"
       >
         <img
           className="w-full object-cover rounded-lg border-[2px] border-solid"
@@ -32,7 +34,8 @@ export default function Info(props: IInfoProps) {
         className={`story md:w-[50%] md:flex-col md:my-auto md:px-3 py-2 ${
           groom ? "order-2" : "order-1"
         }`}
-        data-aos={groom ? "zoom-in-left" : "zoom-in-right"}
+        data-aos={groom ? "flip-left" : "flip-right"}
+        data-aos-duration="3000"
       >
         <h2 className="text-[12px] md:text-[16px] font-medium">
           {groom ? "Chú rể: Hoàng Hiệp" : "Cô dâu: Minh Nguyệt"}
@@ -49,7 +52,7 @@ export default function Info(props: IInfoProps) {
           thiên nhiên. Ngoài ra còn rất thích vẽ vời, nuôi mèo và nuôi ước mơ có cho mình một vườn
           hồng khoe sắc.`}
         </p>
-        <p className="text-great-vibes text-[14px] md:text-[18px] lg:text-[24px]">
+        <p className="text-great-vibes text-[16px] md:text-[20px] lg:text-[26px]">
           {groom ? "Hoàng Hiệp" : "Minh Nguyệt"}
         </p>
       </div>

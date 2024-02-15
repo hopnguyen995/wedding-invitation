@@ -2,7 +2,7 @@ export interface IBestRegardsProps {}
 
 export default function BestRegards() {
   return (
-    <div className="lg:w-[60%] mx-auto p-4">
+    <div className="lg:w-[60%] mx-auto p-4 lg:py-8">
       <div className="text-center">
         <i className="far fa-heart text-[60px] relative z-[5] text-[#F82548]">
           <i className="fas fa-heart text-[36px] absolute bottom-0 z-[10] right-0 text-[#F82548]"></i>
