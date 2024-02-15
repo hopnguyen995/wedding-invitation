@@ -41,20 +41,20 @@ const CountdownTimer = () => {
         </div>
         <div className="flex gap-3">
           <div className="flex flex-col items-center w-[70px] h-[100px] bg-white p-2 border-4 border-solid border-red-400 rounded-md">
-            <p className="font-medium text-[30px]">{timeLeft.days}</p>
-            <p>Ngày</p>
+            <p className="font-medium text-[30px] text-[#f23b43]">{timeLeft.days}</p>
+            <p className="text-[#f23b43]">Ngày</p>
           </div>
           <div className="flex flex-col items-center w-[70px] h-[100px] bg-white p-2 border-4 border-solid border-red-400 rounded-md">
-            <p className="font-medium text-[30px]">{timeLeft.hours}</p>
-            <p>Giờ</p>
+            <p className="font-medium text-[30px] text-[#f23b43]">{timeLeft.hours}</p>
+            <p className="text-[#f23b43]">Giờ</p>
           </div>
           <div className="flex flex-col items-center w-[70px] h-[100px] bg-white p-2 border-4 border-solid border-red-400 rounded-md">
-            <p className="font-medium text-[30px]">{timeLeft.minutes}</p>
-            <p>Phút</p>
+            <p className="font-medium text-[30px] text-[#f23b43]">{timeLeft.minutes}</p>
+            <p className="text-[#f23b43]">Phút</p>
           </div>
           <div className="flex flex-col items-center w-[70px] h-[100px] bg-white p-2 border-4 border-solid border-red-400 rounded-md">
-            <p className="font-medium text-[30px]">{timeLeft.seconds}</p>
-            <p>Giây</p>
+            <p className="font-medium text-[30px] text-[#f23b43]">{timeLeft.seconds}</p>
+            <p className="text-[#f23b43]">Giây</p>
           </div>
         </div>
       </div>

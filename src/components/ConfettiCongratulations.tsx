@@ -25,9 +25,9 @@ const ConfettiCongratulations = () => {
   };
 
   return (
-    <div className="">
+    <div>
       <Confetti
-        width={width - 20}
+        width={width}
         height={height}
         numberOfPieces={10}
         wind={0}
