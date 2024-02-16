@@ -7,6 +7,7 @@ import imgBride from "../../assets/images/bride-section-1.jpeg";
 import BestRegards from "./bestRegards";
 import MusicPlayer from "../music";
 import MessengerButton from "../redirectMessenger";
+import Event from "./event";
 
 export interface IHomeProps {}
 
@@ -20,6 +21,7 @@ export default function Home() {
         <Info urlImg={imgBride} groom={false} />
       </div>
       <CountdownTimer />
+      <Event />
       <MessengerButton />
       <MusicPlayer />
     </div>
