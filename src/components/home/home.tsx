@@ -10,6 +10,7 @@ import MusicPlayer from "../music";
 import Event from "./event";
 import WeddingBox from "./wedingBox";
 import Footer from "./footer";
+import Album from "./album";
 
 export interface IHomeProps {}
 
@@ -24,6 +25,7 @@ export default function Home() {
       </div>
       <CountdownTimer />
       <Event />
+      <Album />
       <WeddingBox />
       {/* <MessengerButton /> */}
       <Footer />

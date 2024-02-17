@@ -10,7 +10,7 @@ export default function Event() {
   return (
     <div className="event-wrapper pt-8 md:pt-10 lg:pt-12">
       <div className="event-title text-center">
-        <h3 className="capitalize text-great-vibes text-[24px] md:text-[30px] lg:text-[40px] inline-block bg-[#feebec] text-[#848383] px-3 border-t-[1px] border-b-[1px] border-[#f23b431a]">
+        <h3 className="capitalize text-great-vibes text-[24px] md:text-[30px] lg:text-[40px] inline-block bg-[#feebec] text-[#848383] px-3 border-t-[2px] border-b-[2px] border-[#f23b431a]">
           sự kiện cưới
         </h3>
       </div>

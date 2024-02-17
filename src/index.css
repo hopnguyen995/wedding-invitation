@@ -79,6 +79,27 @@ body::-webkit-scrollbar-track {
   background-color: #f1f1f1; /* Màu nền của phần dọc theo thanh cuộn */
 }
 
+/* .text-content-item::after {
+  content: "";
+  position: absolute;
+  background-image: url(/src/assets/images/imgSvg/bottom-outro.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  bottom: -46px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 103px;
+  height: 14px;
+} */
+.decor-bottom-item {
+  background-image: url(/src/assets/images/imgSvg/bottom-outro.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 14px;
+  background-position: center;
+}
+
 .footer-content::before {
   content: "";
   position: absolute;
