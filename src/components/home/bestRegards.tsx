@@ -1,6 +1,17 @@
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 export interface IBestRegardsProps {}
 
 export default function BestRegards() {
+  useEffect(() => {
+    AOS.init();
+
+    // Cài đặt các hiệu ứng AOS tại đây (ví dụ: fade-up)
+    AOS.refresh(); // Cập nhật AOS khi component được render lại
+  }, []);
+
   return (
     <div className="lg:w-[60%] mx-auto p-4 lg:py-8">
       <div className="text-center">
@@ -11,7 +22,11 @@ export default function BestRegards() {
       <h2 className="text-married text-[#F82548] font-bold md:text-[30px] lg:text-[40px] text-center py-4">
         We are Getting Married
       </h2>
-      <p className="text-center text-[#73777b] text-[12px] md:text-[16px] lg:text-[18px]">
+      <p
+        className="text-center text-[#73777b] text-[12px] md:text-[16px] lg:text-[18px]"
+        data-aos="zoom-in"
+        data-aos-duration="3000"
+      >
         Thật vui vì được gặp và đón tiếp các bạn trong một dịp đặc biệt như đám cưới của chúng tôi.
         Chúng tôi muốn gửi đến bạn những lời cảm ơn sâu sắc nhất và để bạn biết chúng tôi rất hạnh
         phúc khi thấy bạn ở đó. Cảm ơn các bạn rất nhiều vì sự hiện diện cùng những lời chúc tốt đẹp

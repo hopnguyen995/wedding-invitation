@@ -31,7 +31,7 @@ export default function Event() {
           imgItem={nhatrai2}
           title={`Tiệc cưới nhà trai`}
           address={`Xóm mới Lợi Hoà, xã Yên Lâm, Huyện Yên Mô, Ninh Bình`}
-          time={`15:30PM & 07:30AM 24-25/02/2024`}
+          time={`16:30PM & 07:30AM 24-25/02/2024`}
         />
         <EventItem
           imgItem={nhatrai1}

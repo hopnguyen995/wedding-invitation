@@ -24,7 +24,7 @@ const MusicPlayer = () => {
         <div className="absolute left-[3px] top-[3px]">
           <audio ref={audioRef} src="audio/beautiful-in-white-bachata.mp3" autoPlay={isPlaying} />
           <button
-            className="flex justify-center items-center w-[40px] h-[40px] bg-pink-400 text-[#fff] rounded-full"
+            className="flex justify-center items-center w-[40px] h-[40px] bg-[#df4758] text-[#fff] rounded-full"
             onClick={togglePlayPause}
           >
             {isPlaying ? <i className="fas fa-pause"></i> : <i className="fas fa-play"></i>}
