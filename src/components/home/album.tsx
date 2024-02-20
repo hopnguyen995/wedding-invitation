@@ -32,25 +32,25 @@ export default function Album() {
         <div className="">
           <img className="w-full" src={anh4} alt="anh-4" />
         </div>
-        <div className="grid grid-cols-subgrid gap-3">
-          <div className="">
-            <img className="w-full" src={anh5} alt="anh-5" />
-          </div>
-          <div className="">
-            <img className="w-full" src={anh6} alt="anh-6" />
-          </div>
+        {/* <div className="grid grid-cols-subgrid gap-3"> */}
+        <div className="">
+          <img className="w-full" src={anh5} alt="anh-5" />
         </div>
+        <div className="">
+          <img className="w-full" src={anh6} alt="anh-6" />
+        </div>
+        {/* </div> */}
         <div className="">
           <img className="w-full" src={anh7} alt="anh-7" />
         </div>
-        <div className="grid grid-cols-subgrid gap-3">
-          <div className="">
-            <img className="w-full" src={anh8} alt="anh-8" />
-          </div>
-          <div className="">
-            <img className="w-full" src={anh9} alt="anh-9" />
-          </div>
+        {/* <div className="grid grid-cols-subgrid gap-3"> */}
+        <div className="">
+          <img className="w-full" src={anh8} alt="anh-8" />
         </div>
+        <div className="">
+          <img className="w-full" src={anh9} alt="anh-9" />
+        </div>
+        {/* </div> */}
         <div className="">
           <img className="w-full" src={anh10} alt="anh-10" />
         </div>
