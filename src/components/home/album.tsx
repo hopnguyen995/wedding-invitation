@@ -15,7 +15,7 @@ export interface IAlbumProps {}
 
 export default function Album() {
   return (
-    <div className="my-8 text-center px-4">
+    <div className="py-10 text-center px-4">
       <h3 className="capitalize text-great-vibes text-[24px] md:text-[30px] lg:text-[40px] inline-block bg-[#feebec] text-[#848383] px-3 border-t-[2px] border-b-[2px] border-[#f23b431a] mb-8 lg:mb-10">
         album hình cưới
       </h3>
