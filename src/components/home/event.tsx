@@ -19,7 +19,7 @@ export default function Event() {
           imgItem={nhagai2}
           title={`Tiệc cưới nhà gái`}
           address={`Xóm 4 xã Liên Sơn, Huyện Gia Viễn, Ninh Bình`}
-          time={`15:30PM 24/02/2024`}
+          time={`16:00PM 24/02/2024`}
         />
         <EventItem
           imgItem={nhagai1}
