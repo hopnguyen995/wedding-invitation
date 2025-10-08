@@ -1,55 +1,66 @@
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import anh1 from "../../assets/images/album/anh1.png";
+import bgFlower from "../../assets/images/imgSvg/hero-img-left.svg";
 
 export interface IBestRegardsProps {}
 
 export default function BestRegards() {
   useEffect(() => {
     AOS.init();
-
-    // Cài đặt các hiệu ứng AOS tại đây (ví dụ: fade-up)
-    AOS.refresh(); // Cập nhật AOS khi component được render lại
+    AOS.refresh();
   }, []);
 
   return (
-    <div className="lg:w-[60%] mx-auto p-4 lg:py-8">
-      <div className="text-center">
-        <i className="far fa-heart text-[60px] relative z-[5] text-[#F82548]">
-          <i className="fas fa-heart text-[36px] absolute bottom-0 z-[10] right-0 text-[#F82548]"></i>
-        </i>
-      </div>
-      <h2 className="text-married text-[#F82548] font-bold md:text-[30px] lg:text-[40px] text-center py-4">
-        We are Getting Married
-      </h2>
-      <p
-        className="text-center text-[#73777b] text-[12px] md:text-[16px] lg:text-[18px]"
-        data-aos="zoom-in"
-        data-aos-duration="3000"
+    <div
+      className="relative w-full overflow-hidden py-10 px-4 lg:py-16"
+      style={{
+        backgroundImage: `url(${bgFlower})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "contain",
+        backgroundPosition: "left center",
+      }}
+    >
+      {/* Overlay trắng mờ để dễ đọc chữ */}
+      <div className="absolute inset-0 bg-[#f3f2ea]/80"></div>
+
+      <div
+        className="relative text-center text-[#6fa322] py-12 px-4 text-family"
+        data-aos="fade-up"
+        data-aos-duration="1500"
       >
-        Thật vui vì được gặp và đón tiếp các bạn trong một dịp đặc biệt như đám cưới của chúng tôi.
-        Chúng tôi muốn gửi đến bạn những lời cảm ơn sâu sắc nhất và để bạn biết chúng tôi rất hạnh
-        phúc khi thấy bạn ở đó. Cảm ơn các bạn rất nhiều vì sự hiện diện cùng những lời chúc tốt đẹp
-        mà bạn đã dành cho chúng tôi!
-      </p>
-      <p className="text-married-signature py-3 text-center text-[16px] md:text-[20px] lg:text-[30px]">
-        Hoàng Hiệp & Minh Nguyệt
-      </p>
-      <div className="flex justify-between">
-        <div>
-          <p className="text-[12px] md:text-[16px] lg:text-[18px]">
-            Con Ông: <span className="font-medium">Vũ Hồng Quang</span>
-          </p>
-          <p className="text-[12px] md:text-[16px] lg:text-[18px]">
-            Con Bà: <span className="font-medium">Nguyễn Thị Hướng</span>
-          </p>
-        </div>
-        <div>
-          <p className="text-[12px] md:text-[16px] lg:text-[18px]">
-            Con Bà: <span className="font-medium">Nguyễn Thị Nga</span>
-          </p>
-        </div>
+        {/* Save the date (chữ calligraphy) */}
+        <p
+          className="text-[32px] md:text-[40px] mb-4 font-great-vibes text-[#6fa322]"
+          style={{ fontFamily: "'Great Vibes', cursive" }}
+        >
+          Save the date
+        </p>
+
+        {/* Ngày tháng */}
+        <p className="text-2xl md:text-3xl font-bold tracking-widest">
+          08.11.2025
+        </p>
       </div>
+
+{/* Ảnh cô dâu chú rể */}
+<div className="relative flex items-center justify-center pb-8">
+  <div
+    className="relative z-10 flex flex-col items-center justify-center 
+        mx-auto bg-gradient-to-br from-[#6fa322]/90 to-[#8fbf44]/90 
+        border border-white/30 backdrop-blur-md
+        w-full max-w-[400px] md:max-w-[500px] rounded-lg overflow-hidden"
+    data-aos="flip-left"
+    data-aos-duration="1500"
+  >
+    <img
+      src={anh1}
+      alt="Couple"
+      className="w-full h-auto object-contain"
+    />
+  </div>
+</div>
     </div>
   );
 }

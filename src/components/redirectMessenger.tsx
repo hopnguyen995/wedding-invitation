@@ -14,7 +14,7 @@ const MessengerButton = () => {
         // }
         target="_blank"
         rel="noopener noreferrer"
-        className="p-[10px] bg-blue-500 text-[#fff] font-medium rounded-lg"
+        className="p-[10px] bg-blue-500 text-[#f5efed] font-medium rounded-lg"
       >
         GỬI LỜI CHÚC
       </a>

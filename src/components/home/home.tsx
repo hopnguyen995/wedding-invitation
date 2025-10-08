@@ -1,34 +1,29 @@
 import CountdownTimer from "../countdownTimer";
 // import MessengerButton from "../redirectMessenger";
 import CarouselHero from "./carouselHero";
-import Info from "./info";
-import imgGroom from "../../assets/images/album/anh7.jpg";
-import imgBride from "../../assets/images/album/anh5.jpg";
 import BestRegards from "./bestRegards";
 import MusicPlayer from "../music";
 // import MessengerButton from "../redirectMessenger";
 import Event from "./event";
-import WeddingBox from "./wedingBox";
-import Footer from "./footer";
+import WeddingCalender from "./weddingCalendar";
 import Album from "./album";
+import WeddingBox from "./weddingBox";
+import WeddingInfo from "./weddingInfo";
 
-export interface IHomeProps {}
+export interface IHomeProps {groom: boolean;}
 
-export default function Home() {
+export default function Home(props: IHomeProps) {
+  const { groom } = props;
   return (
     <div>
-      <CarouselHero />
+      <CarouselHero groom={groom} />
       <BestRegards />
-      <div>
-        <Info urlImg={imgGroom} groom={true} />
-        <Info urlImg={imgBride} groom={false} />
-      </div>
-      <CountdownTimer />
-      <Event />
+      <WeddingInfo groom={groom} />
+      <WeddingCalender />
+      <Event groom={groom} />
       <Album />
-      <WeddingBox />
-      {/* <MessengerButton /> */}
-      <Footer />
+      <WeddingBox groom={groom} />
+      <CountdownTimer />
       <MusicPlayer />
     </div>
   );

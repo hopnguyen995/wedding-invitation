@@ -1,66 +1,60 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import slide1 from "../../assets/images/zs-slideshow-hero-1.jpg";
-import slide2 from "../../assets/images/zs-slideshow-hero-2.jpg";
-import slide3 from "../../assets/images/zs-slideshow-hero-3.jpg";
+import slide1 from "../../assets/images/slide/anh1.png";
+import slide2 from "../../assets/images/slide/anh2.jpg";
+import slide3 from "../../assets/images/slide/anh3.jpg";
 
-export interface ICarouselHeroProps {}
+export interface ICarouselHeroProps {
+  groom: boolean;
+}
 
-export default function CarouselHero() {
+export default function CarouselHero({ groom }: ICarouselHeroProps) {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 1000, // Tốc độ chuyển động (ms)
-    fade: true, // Hiệu ứng làm mờ
-    autoplaySpeed: 5000, // Thời gian giữa các slide (ms)
+    speed: 1200,
+    fade: true,
+    autoplaySpeed: 5000,
     autoplay: true,
     arrows: false,
+    pauseOnHover: false,
   };
 
   return (
-    <div className="section-hero relative">
-      <div className="carousel-hero w-full">
-        <Slider {...settings}>
-          <div>
+    <div className="section-hero relative w-full h-[100svh] overflow-hidden">
+      <Slider {...settings}>
+        {[slide1, slide2, slide3].map((slide, i) => (
+          <div key={i} className="relative group">
             <img
-              className="h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] w-full object-cover object-center"
-              src={slide1}
-              alt="Slide 1"
+              src={slide}
+              alt={`Slide ${i + 1}`}
+              className="
+                w-full h-[100svh]
+                object-cover object-center
+                animate-zoomIn
+              "
             />
+            {/* Overlay gradient giúp chữ nổi bật */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10"></div>
           </div>
-          <div>
-            <img
-              className="h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] w-full object-cover object-center"
-              src={slide2}
-              alt="Slide 2"
-            />
-          </div>
-          <div>
-            <img
-              className="h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] w-full object-cover object-center"
-              src={slide3}
-              alt="Slide 3"
-            />
-          </div>
-        </Slider>
-      </div>
-      <div className="wrapper-hero absolute w-[80%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <div className="">
-          <div className="content-text">
-            <p className="text-center text-[#fff] font-medium text-[10px] sm:text-[12px] lg:text-[20px] uppercase">
-              save the date
-            </p>
-            <h1 className="text-great-vibes text-[24px] sm:text-[40px] lg:text-[60px] xl:text-[80px] text-center text-[#fff] pt-3">
-              Hoàng Hiệp & Minh Nguyệt
-            </h1>
-            <div className="text-center">
-              <p className="text-[#fff] font-medium text-[12px] sm:text-[14px] lg:text-[20px] border-b-2 border-solid border-white inline-block">
-                February 25, 2024
-              </p>
-            </div>
-          </div>
-          <i className="fas fa-heart absolute text-[180px] md:text-[260px] lg:text-[400px] text-heart-rgba top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[-1]"></i>
+        ))}
+      </Slider>
+
+      {/* Text Overlay */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+        {/* PC view */}
+        <div className="hidden md:block px-10 py-6 bg-white/10 backdrop-blur-sm rounded-2xl shadow-xl animate-fadeIn">
+          <h1 className="text-great-vibes text-white text-[5vw] xl:text-[4vw] drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)] leading-tight">
+            {groom ? "Mai Anh & Thế Hợp" : "Thế Hợp & Mai Anh"}
+          </h1>
+        </div>
+
+        {/* Mobile view */}
+        <div className="md:hidden px-4 py-3 bg-white/10 rounded-xl backdrop-blur-sm animate-fadeIn">
+          <h1 className="text-great-vibes text-white text-[10vw] sm:text-[8vw] drop-shadow-[0_3px_6px_rgba(0,0,0,0.8)] leading-tight">
+            {groom ? "Mai Anh & Thế Hợp" : "Thế Hợp & Mai Anh"}
+          </h1>
         </div>
       </div>
     </div>

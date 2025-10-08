@@ -6,34 +6,36 @@ export interface IWeddingBoxItemProps {
 export default function WeddingBoxItem(props: IWeddingBoxItemProps) {
   const { QRCode, groom } = props;
   return (
-    <div className="wedding-box-item-wrapper bg-[#df4758] text-[#fff] w-full rounded-md p-4 min-h-[450px]">
-      <div className="border-solid border-[1px] border-[#fff] h-full">
+    <div className="relative z-10 flex flex-col items-center justify-center 
+        mx-auto bg-gradient-to-br from-[#6fa322]/90 to-[#8fbf44]/90 
+        text-white text-family rounded-3xl shadow-xl
+        border border-white/30 backdrop-blur-md
+        w-full max-w-[400px] md:max-w-[500px] p-6">
+      <div className="w-full border-solid border-[1px] border-[#f5efed] rounded-3xl shadow-xl h-full mx-auto">
         <div className="text-center">
-          <h3 className="text-married font-bold text-[16px] md:text-[20px] pt-4 pb-2">
+          <h3 className="text-family text-[16px] md:text-[20px] pt-4 pb-2">
             Mừng cưới đến cô dâu và chú rể
           </h3>
-          <p className="text-married font-semibold pb-3 px-2">
+          <p className="text-family pb-3 px-2 text-[14px]">
             *Của chồng công vợ - Tuy hai mà một, tuy một mà hai*
           </p>
           <div className="w-full">
             <img
               src={QRCode}
-              className="w-[200px] h-[200px] mx-auto"
-              alt={`QR ${groom ? "groom" : "bride"}`}
+              className="w-[200px] h-[200px] mx-auto" alt="QR Code"
             />
           </div>
           <div className="text-content-item mt-6 mb-10 relative">
-            <p className="text-married text-[12px] md:text-[16px] mb-2 font-semibold">
-              Tài khoản: {groom ? "Vũ Hoàng Hiệp" : ""}
+            <p className="text-family text-[12px] md:text-[16px] mb-2 font-semibold">
+              Tài khoản: {groom ? "Nguyễn Mai Anh" : "Nguyễn Thế Hợp"}
             </p>
-            <p className="text-married text-[12px] md:text-[16px] mb-2 font-semibold">
-              Ngân hàng: {groom ? "Techcombank" : ""}
+            <p className="text-family text-[12px] md:text-[16px] mb-2 font-semibold">
+              Ngân hàng: {groom ? "TP Bank" : "MB Bank"}
             </p>
-            <p className="text-married text-[12px] md:text-[16px] mb-2 font-semibold">
-              Số tài khoản: {groom ? "1903 8620 5540 12" : ""}
+            <p className="text-family text-[12px] md:text-[16px] mb-2 font-semibold">
+              Số tài khoản: {groom ? "0326262659" : "0900723838888"}
             </p>
           </div>
-          <div className="decor-bottom-item my-5"></div>
         </div>
       </div>
     </div>

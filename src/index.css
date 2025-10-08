@@ -5,6 +5,7 @@
 :root {
   /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   font-family: "Roboto", sans-serif;
+  background-color: #f3f2ea;
 }
 
 .text-great-vibes {
@@ -15,6 +16,12 @@
 
 .text-married {
   font-family: "Marmelad", sans-serif;
+  /* font-weight: 400; */
+  font-style: normal;
+}
+
+.text-family {
+  font-family: "Tahoma", sans-serif;
   /* font-weight: 400; */
   font-style: normal;
 }
@@ -30,7 +37,7 @@
     background-color: transparent;
   }
   50% {
-    background-color: #df4758;
+    background-color: #65941f;
   }
   100% {
     background-color: transparent;
@@ -47,7 +54,7 @@
 }
 
 .section-countdown {
-  background-image: url(./assets/images/bgr-countdown.jpg);
+  background-image: url(./assets/images/countdown.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -71,7 +78,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: pink; /* Màu nền của phần "nút" cuộn */
+  background-color: #65941f; /* Màu nền của phần "nút" cuộn */
   border-radius: 6px; /* Độ cong góc */
 }
 
@@ -114,4 +121,37 @@ body::-webkit-scrollbar-track {
   width: 80px;
   height: 71px;
   transform: rotate(50deg);
+}
+
+@layer utilities {
+  /* Zoom in chậm khi slide hiển thị */
+  @keyframes zoomIn {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.05);
+    }
+  }
+
+  .animate-zoomIn {
+    animation: zoomIn 8s ease-in-out forwards;
+    transition: transform 1.2s ease;
+  }
+
+  /* Fade-in mượt cho text overlay */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1.5s ease-in-out both;
+  }
 }
