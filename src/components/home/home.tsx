@@ -1,29 +1,32 @@
+// src/pages/Home.tsx (hoặc src/components/Home.tsx)
+
 import CountdownTimer from "../countdownTimer";
-// import MessengerButton from "../redirectMessenger";
-import CarouselHero from "./carouselHero";
-import BestRegards from "./bestRegards";
 import MusicPlayer from "../music";
-// import MessengerButton from "../redirectMessenger";
 import Event from "./event";
 import WeddingCalender from "./weddingCalendar";
 import Album from "./album";
 import WeddingBox from "./weddingBox";
 import WeddingInfo from "./weddingInfo";
+import WeddingFamilyInfo from "./weddingFamilyInfo";
+import RSVPForm from "./RSVPForm"; 
 
-export interface IHomeProps {groom: boolean;}
+export interface IHomeProps { groom: boolean; }
 
 export default function Home(props: IHomeProps) {
   const { groom } = props;
   return (
     <div>
-      <CarouselHero groom={groom} />
-      <BestRegards />
-      <WeddingInfo groom={groom} />
-      <WeddingCalender />
+      <WeddingFamilyInfo groom={groom} />
+      
       <Event groom={groom} />
+      <WeddingCalender />
+      <WeddingInfo groom={groom} />
       <Album />
+      <RSVPForm groom={groom} />
       <WeddingBox groom={groom} />
       <CountdownTimer />
+      
+      {/* Music Player thường ở cuối hoặc được cố định (fixed) */}
       <MusicPlayer />
     </div>
   );

@@ -2,7 +2,7 @@
 import Home from "./components/home/home";
 import { useState } from "react";
 function App() {
-  const [groom] = useState(true);
+  const [groom] = useState(false);
   return (
     <div>
       {/* <ConfettiCongratulations /> */}
