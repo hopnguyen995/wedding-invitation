@@ -9,6 +9,7 @@ import WeddingBox from "./weddingBox";
 import WeddingInfo from "./weddingInfo";
 import WeddingFamilyInfo from "./weddingFamilyInfo";
 import RSVPForm from "./RSVPForm"; 
+import Thankyou from "./thankyou"; 
 
 export interface IHomeProps { groom: boolean; }
 
@@ -24,8 +25,8 @@ export default function Home(props: IHomeProps) {
       <Album />
       <RSVPForm groom={groom} />
       <WeddingBox groom={groom} />
+      <Thankyou groom={groom} />
       <CountdownTimer />
-      
       {/* Music Player thường ở cuối hoặc được cố định (fixed) */}
       <MusicPlayer />
     </div>

@@ -1,16 +1,21 @@
 import os
+from PIL import Image
 
-# Thư mục hiện tại (nơi file .py đang nằm)
-folder = os.getcwd()
+def optimize_folder_for_web(input_dir, output_dir, max_width=1200, quality=70):
+    os.makedirs(output_dir, exist_ok=True)
+    for file_name in os.listdir(input_dir):
+        if file_name.lower().endswith((".jpg", ".jpeg", ".png")):
+            input_path = os.path.join(input_dir, file_name)
+            output_name = os.path.splitext(file_name)[0] + ".webp"
+            output_path = os.path.join(output_dir, output_name)
 
-old_ext = ".JPG"
-new_ext = ".jpg"
+            img = Image.open(input_path).convert("RGB")
+            w, h = img.size
+            if w > max_width:
+                new_height = int(h * (max_width / w))
+                img = img.resize((max_width, new_height), Image.LANCZOS)
 
-for filename in os.listdir(folder):
-    if filename.endswith(old_ext):
-        base = os.path.splitext(filename)[0]
-        new_name = base + new_ext
-        os.rename(filename, new_name)
-        print(f"✅ {filename} → {new_name}")
+            img.save(output_path, format="WEBP", quality=quality, optimize=True, method=6)
+            print(f"✅ {file_name} → {output_name} ({w}x{h} → {img.size})")
 
-print("🎉 Hoàn tất đổi đuôi file!")
+optimize_folder_for_web("images", "optimized")

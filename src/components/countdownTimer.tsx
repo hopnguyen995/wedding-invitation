@@ -35,7 +35,7 @@ const CountdownTimer = () => {
   return (
     <div className="section-countdown h-[250px]">
       <div className="md:flex md:justify-around md:items-center absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-[70%]">
-        <div className="text-great-vibes text-[#f5efed] p-3">
+        <div className="pinyon-script-regular text-[#f5efed] p-3">
           <p className="text-[20px] lg:text-[30px]">Counting the minutes for.....</p>
           <p className="text-[36px] lg:text-[60px]">The big day</p>
         </div>

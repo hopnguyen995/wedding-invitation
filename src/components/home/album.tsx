@@ -26,7 +26,7 @@ export default function Album() {
   const allImages = useMemo(
     () =>
       importAll(
-        import.meta.glob("/src/assets/images/album/*.{jpg,jpeg,png}", {
+        import.meta.glob("/src/assets/images/album/*.{webp,jpg,jpeg,png}", {
           eager: true,
         })
       ),
@@ -61,8 +61,8 @@ export default function Album() {
     <div className="relative w-full mx-auto max-w-[600px] overflow-hidden py-10 px-4 lg:py-16">
       {/* === Tiêu đề === */}
       <h3
-        className="text-[24px] md:text-[32px] lg:text-[40px] text-[#6fa322] uppercase font-family text-center mb-10 tracking-wider drop-shadow-[1px_1px_2px_rgba(0,0,0,0.25)]"
-        data-aos="fade-down"
+        className="text-[22px] md:text-[32px] lg:text-[40px] text-[#6fa322] uppercase font-family text-center mb-10 tracking-wider drop-shadow-[1px_1px_2px_rgba(0,0,0,0.25)]"
+        data-aos="fade-in"
       >
         Album Hình Cưới
       </h3>

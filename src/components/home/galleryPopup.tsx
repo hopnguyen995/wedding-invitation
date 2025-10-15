@@ -1,6 +1,8 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface GalleryPopupProps {
     images: string[];
@@ -8,6 +10,10 @@ interface GalleryPopupProps {
 }
 
 export default function galleryPopup({ images, triggerText = "Xem thêm ảnh" }: GalleryPopupProps) {
+      useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+      }, []);
     const [isOpen, setIsOpen] = useState(false);
     const [current, setCurrent] = useState(0);
 
@@ -67,6 +73,8 @@ export default function galleryPopup({ images, triggerText = "Xem thêm ảnh" }
             <button
                 onClick={openPopup}
                 className="flex items-center gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition"
+                data-aos="fade-up"
+                data-aos-duration="1500"
             >
                 {triggerText}
             </button>

@@ -68,7 +68,7 @@ export default function Event({ groom }: IEventProps) {
             </>
           ) : (
             <>
-              THAM DỰ BỮA TIỆC THÂN MẬT CÙNG GIA ĐÌNH CHÚNG TÔI{"\n"}
+              THAM DỰ BỮA TIỆC THÂN MẬT CÙNG GIA ĐÌNH CHÚNG TÔI<br />
               VÀO LÚC {groom ? "17 GIỜ 00 PHÚT" : "11 GIỜ 30 PHÚT"}
             </>
           )}
