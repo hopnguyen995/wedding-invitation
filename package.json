@@ -8,7 +8,11 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "build:groom": "vite build --mode groom",
+    "build:bride": "vite build --mode bride",
+    "deploy:groom": "npm run build:groom && npx gh-pages -d dist -b gh-pages --dest groom",
+    "deploy:bride": "npm run build:bride && npx gh-pages -d dist -b gh-pages --dest bride",
+    "deploy:all": "npm run deploy:groom && npm run deploy:bride"
   },
   "dependencies": {
     "aos": "^2.3.4",

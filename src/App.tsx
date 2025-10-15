@@ -1,11 +1,14 @@
-//import ConfettiCongratulations from "./components/ConfettiCongratulations";
 import Home from "./components/home/home";
-import { useState } from "react";
+import { useMemo } from "react";
+
 function App() {
-  const [groom] = useState(false);
+  // 🧩 Lấy biến từ môi trường, chuyển thành boolean
+  const groom = useMemo(() => {
+    return import.meta.env.VITE_GROOM === "true";
+  }, []);
+
   return (
     <div>
-      {/* <ConfettiCongratulations /> */}
       <Home groom={groom} />
     </div>
   );
