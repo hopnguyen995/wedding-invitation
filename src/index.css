@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
+  font-family: "Roboto", sans-serif;
+  background-color: #f3f2ea;
+}
+
+.pinyon-script-regular {
+  font-family: "Pinyon Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.text-great-vibes {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.text-married {
+  font-family: "Marmelad", sans-serif;
+  /* font-weight: 400; */
+  font-style: normal;
+}
+
+.text-family {
+  font-family: "Tahoma", sans-serif;
+  /* font-weight: 400; */
+  font-style: normal;
+}
+
+.text-married-signature {
+  font-family: "Oooh Baby", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: #65941f;
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+
+.button-music {
+  animation: colorChange 2s linear infinite;
+}
+
+.section-hero .carousel-hero img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.section-countdown {
+  background-image: url(./assets/images/countdown.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-position: center center;
+}
+
+.section-countdown::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Tùy chỉnh thanh cuộn cho trình duyệt WebKit-based */
+body::-webkit-scrollbar {
+  width: 8px; /* Chiều rộng của thanh cuộn */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #65941f; /* Màu nền của phần "nút" cuộn */
+  border-radius: 6px; /* Độ cong góc */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Màu nền của phần dọc theo thanh cuộn */
+}
+
+.decor-bottom-item {
+  background-image: url(/src/assets/images/imgSvg/bottom-outro.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 30px;
+  background-position: center;
+}
+
+.footer-content::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -50px;
+  background-image: url(./assets/images/imgSvg/flower-small.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 80px;
+  height: 71px;
+  transform: rotate(-130deg);
+}
+
+.footer-content::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  right: -50px;
+  background-image: url(./assets/images/imgSvg/flower-small.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 80px;
+  height: 71px;
+  transform: rotate(50deg);
+}
+
+@layer utilities {
+  /* Zoom in chậm khi slide hiển thị */
+  @keyframes zoomIn {
+    0% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+
+  .animate-zoomIn {
+    animation: zoomIn 8s ease-in-out forwards;
+    transition: transform 1.2s ease;
+  }
+
+  /* Fade-in mượt cho text overlay */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 1.5s ease-in-out both;
+  }
+
+  .select-placeholder {
+  color: #9ca3af; /* Màu xám nhạt */
+}
+}
