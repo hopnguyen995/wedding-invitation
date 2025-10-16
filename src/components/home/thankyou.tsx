@@ -19,9 +19,7 @@ export default function thankyou({ groom }: IEventProps) {
     { defaultFont: 18, minFont: 8 }
   );
   return (
-    <div className="relative min-h-screen bg-[#f3f2ea] flex items-center justify-center px-4 overflow-hidden">
-      {/* Overlay background */}
-      <div className="absolute inset-0 bg-[#f3f2ea]/90"></div>
+    <div className="relative py-12 flex items-center justify-center px-4 overflow-hidden">
 
       {/* Content */}
       <motion.div
@@ -54,11 +52,12 @@ export default function thankyou({ groom }: IEventProps) {
         <div className="text-[14px] md:text-[16px] leading-relaxed text-gray-700 text-family space-y-5">
           <p>
             Chúng tôi xin gửi lời cảm ơn chân thành và sâu sắc nhất đến toàn thể quý quan khách, người thân và bạn bè gần xa — 
-            những người đã dành thời gian, tình cảm và lời chúc tốt đẹp cho chúng tôi trong ngày trọng đại này.
+            những người đã luôn đồng hành, chia sẻ và gửi đến chúng tôi những lời chúc tốt đẹp nhất trong hành trình hướng đến 
+            ngày trọng đại.
           </p>
 
           <p>
-            Dù quý vị đã hiện diện để cùng chung vui, hay vì khoảng cách và công việc mà không thể đến dự, 
+            Dù quý vị sẽ hiện diện để cùng chung vui, hay vì khoảng cách và công việc mà không thể tham dự, 
             chúng tôi vẫn luôn cảm nhận được tình yêu thương và sự quan tâm nồng hậu của mọi người.
           </p>
 

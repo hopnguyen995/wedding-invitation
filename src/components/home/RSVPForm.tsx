@@ -154,7 +154,6 @@ const RSVPForm: React.FC<IRSVPFormProps> = ({ groom }) => {
         data-aos="fade-up"
           data-aos-duration="2000"
         >
-            <div className="absolute inset-0 bg-[#f3f2ea]/80 backdrop-blur-[1px]"></div>
 
             <div
                 className="relative z-10 flex flex-col items-center justify-center 
@@ -193,7 +192,7 @@ const RSVPForm: React.FC<IRSVPFormProps> = ({ groom }) => {
                                     ${formData.thamDu === '' ? 'text-gray-400' : 'text-gray-800'}
                                 `}
                             >
-                                <option value="" disabled>Bạn Có Tham Dự Không?</option>
+                                <option value="" disabled>Bạn có thể đến tham dự chứ?</option>
                                 <option value="Có">Có, tôi sẽ tham dự</option>
                                 <option value="Không">Không, tôi không tham dự được</option>
                             </select>
@@ -203,7 +202,7 @@ const RSVPForm: React.FC<IRSVPFormProps> = ({ groom }) => {
                         {/* 3. Gửi lời chúc đến Dâu Rể */}
                         <motion.div variants={itemVariants} initial="hidden" animate="visible" transition={{ delay: 0.6 }}>
                             <textarea name="loiChuc" value={formData.loiChuc} onChange={handleInputChange} placeholder="Gửi lời chúc (Tùy chọn)" rows={3}
-                                className="w-full p-6 border-none rounded-md bg-white text-gray-800 text-base placeholder-gray-500 shadow-inner focus:ring-2 focus:ring-white/80 transition duration-300 "
+                                className="w-full p-3 border-none rounded-md bg-white text-gray-800 text-base placeholder-gray-500 shadow-inner focus:ring-2 focus:ring-white/80 transition duration-300"
                             />
                         </motion.div>
                     </div>

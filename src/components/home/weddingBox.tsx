@@ -3,8 +3,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import WeddingBoxItem from "./weddingBoxItem";
 import giftbox from "../../assets/images/imgSvg/giftbox.svg";
-import QRcode1 from "../../assets/images/qrCode/qr_1.jpeg";
-import QRcode2 from "../../assets/images/qrCode/qr_2.jpeg";
+import QRcode1 from "../../assets/images/qrCode/qr_1.webp";
+import QRcode2 from "../../assets/images/qrCode/qr_2.webp";
 
 export interface IWeddingBoxProps {
   groom: boolean;
@@ -27,8 +27,6 @@ export default function WeddingBox({ groom }: IWeddingBoxProps) {
     <div
       className="relative w-full overflow-hidden flex flex-col justify-center items-center pt-4"
     >
-      {/* 🎨 Lớp overlay kem mờ để đồng bộ với RSVPForm */}
-      <div className="absolute inset-0 bg-[#f3f2ea]/80 backdrop-blur-[1px]"></div>
 
       {/* Nội dung chính */}
       <div

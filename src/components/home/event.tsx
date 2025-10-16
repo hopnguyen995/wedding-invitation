@@ -3,7 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import flower from "../../assets/images/imgSvg/flower-small.svg";
 import outro from "../../assets/images/imgSvg/bottom-outro.svg";
-import intro from "../../assets/images/imgSvg/OV57E301.svg";
+import intro from "../../assets/images/imgSvg/c1e8r301-2.svg";
 import { useAutoWrapText } from "../../hooks/useAutoWrapText";
 
 export interface IEventProps {
@@ -30,7 +30,7 @@ export default function Event({ groom }: IEventProps) {
   );
 
   return (
-    <div className="relative w-full py-10 px-4 overflow-hidden">
+    <div className="relative w-full pb-6 px-4 overflow-hidden">
       <div
         ref={containerRef}
         className="relative w-full max-w-[650px] mx-auto text-center text-[#6fa322]"
@@ -84,11 +84,7 @@ export default function Event({ groom }: IEventProps) {
         </p>
 
         <div className="flex items-center justify-center space-x-4 mb-2">
-          <div
-            className="hidden sm:block w-16 border-t border-[#6fa322]"
-            data-aos="zoom-in"
-            data-aos-delay="600"
-          />
+          
           <div
             className="text-sm md:text-base font-medium tracking-wider"
             data-aos="fade-right"
@@ -97,7 +93,7 @@ export default function Event({ groom }: IEventProps) {
             THÁNG 11
           </div>
           <div
-            className="text-6xl md:text-7xl font-bold text-[#6fa322] mx-2 leading-none drop-shadow-sm"
+            className="text-6xl md:text-7xl font-bold text-[#6fa322] leading-none drop-shadow-sm"
             data-aos="fade-up"
             data-aos-duration="1500"
           >
@@ -130,7 +126,7 @@ export default function Event({ groom }: IEventProps) {
         <img
           src={flower}
           alt="flower"
-          className="w-20 mx-auto mb-3"
+          className="w-20 mx-auto my-4"
           data-aos="zoom-in"
           data-aos-delay="600"
         />
@@ -192,7 +188,7 @@ export default function Event({ groom }: IEventProps) {
         <img
           src={outro}
           alt="flower"
-          className="w-20 mx-auto mt-6"
+          className="w-30 mx-auto mt-6"
           data-aos="zoom-in"
           data-aos-delay="600"
         />

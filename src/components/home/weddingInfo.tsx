@@ -31,7 +31,6 @@ export default function Event(props: IEventProps) {
     return (
         <div className="relative w-full max-w-[600px] mx-auto p-4 lg:py-8 overflow-hidden">
             {/* Nền nhạt đồng bộ với WeddingFamilyInfo */}
-            <div className="absolute inset-0 bg-[#f3f2ea]/80 rounded-2xl shadow-sm"></div>
 
             {/* Nội dung chính */}
             <div ref={containerRef} className="relative w-full max-w-[650px] mx-auto text-center text-[#6fa322]">
@@ -81,12 +80,6 @@ export default function Event(props: IEventProps) {
 
                 {/* Khối tháng - ngày - năm */}
                 <div className="flex items-center justify-center space-x-4 mb-2">
-                    <div
-                        className="hidden sm:block w-16 border-t border-[#6fa322]"
-                        data-aos="zoom-in"
-                        data-aos-delay="600"
-                    />
-
                     <div
                         className="text-sm md:text-base font-medium tracking-wider"
                         data-aos="fade-right"

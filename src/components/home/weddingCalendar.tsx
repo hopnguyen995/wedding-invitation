@@ -21,15 +21,7 @@ export default function NovemberCalendar() {
     return (
         <div
             className="relative w-full overflow-hidden py-10 px-4 lg:py-16"
-            style={{
-                backgroundImage: `url(${bgFlower})`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
-                backgroundPosition: "right center",
-            }}
         >
-            {/* Overlay trắng nhẹ để nổi chữ */}
-            <div className="absolute inset-0 bg-[#f3f2ea]/80 backdrop-blur-[1px]"></div>
 
             {/* Calendar container */}
             <div

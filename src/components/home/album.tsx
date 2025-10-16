@@ -3,11 +3,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import GalleryPopup from "./galleryPopup";
 
-// 🎯 Helper: Tự động import tất cả ảnh trong thư mục album
 const importAll = (r: Record<string, any>) =>
   Object.values(r).map((m: any) => m.default);
 
-// 🎯 Danh sách animation nhẹ và đẹp cho hiệu năng cao
 const AOS_ANIMATIONS = [
   "fade-up",
   "fade-down",
@@ -33,35 +31,94 @@ export default function Album() {
     []
   );
 
-  // ✅ Chọn ngẫu nhiên 6 ảnh và tạo animation random
-  const randomizeImages = () => {
-    const shuffled = [...allImages].sort(() => 0.5 - Math.random());
-    const selected = shuffled.slice(0, 6);
-    const randomAos = selected.map((_, i) => ({
+  // ✅ Phân loại ảnh dọc/ngang
+  const classifyImages = async (urls: string[]) => {
+    const load = (src: string) =>
+      new Promise<{ src: string; orientation: "portrait" | "landscape" }>(
+        (resolve) => {
+          const img = new Image();
+          img.onload = () => {
+            resolve({
+              src,
+              orientation: img.width > img.height ? "landscape" : "portrait",
+            });
+          };
+          img.src = src;
+        }
+      );
+    return Promise.all(urls.map(load));
+  };
+
+  // ✅ Hàm random 6 ảnh (4 dọc + 2 ngang) + animation random + delay theo cặp
+  const randomizeImages = async () => {
+    const classified = await classifyImages(allImages);
+
+    const portraits = classified
+      .filter((i) => i.orientation === "portrait")
+      .map((i) => i.src);
+    const landscapes = classified
+      .filter((i) => i.orientation === "landscape")
+      .map((i) => i.src);
+
+    if (portraits.length < 4 || landscapes.length < 2) {
+      console.warn("⚠️ Không đủ ảnh portrait/landscape, fallback random.");
+      const fallback = [...allImages].sort(() => 0.5 - Math.random()).slice(0, 6);
+      const randomAos = fallback.map((_, i) => ({
+        aos: AOS_ANIMATIONS[Math.floor(Math.random() * AOS_ANIMATIONS.length)],
+        delay: [0, 120, 240, 0, 120, 240][i], // delay theo cặp
+      }));
+      setImages(fallback);
+      setAosKeys(randomAos);
+      return;
+    }
+
+    // 🔹 Random chọn 4 ảnh dọc + 2 ngang
+    const selectedPortraits = portraits.sort(() => 0.5 - Math.random()).slice(0, 4);
+    const selectedLandscapes = landscapes.sort(() => 0.5 - Math.random()).slice(0, 2);
+
+    // 🔹 Phân nhóm 3-3 (mỗi nhóm có 1 ảnh ngang)
+    const group1 = [
+      selectedPortraits[0],
+      selectedPortraits[1],
+      selectedLandscapes[0],
+    ].sort(() => 0.5 - Math.random());
+
+    const group2 = [
+      selectedPortraits[2],
+      selectedPortraits[3],
+      selectedLandscapes[1],
+    ].sort(() => 0.5 - Math.random());
+
+    const finalImages = [...group1, ...group2];
+
+    // 🔹 Random animation và delay theo cặp index
+    const delayPattern = [0, 120, 240, 0, 120, 240];
+    const randomAos = finalImages.map((_, i) => ({
       aos: AOS_ANIMATIONS[Math.floor(Math.random() * AOS_ANIMATIONS.length)],
-      delay: (i % 4) * 120,
+      delay: delayPattern[i],
     }));
-    setImages(selected);
+
+    setImages(finalImages);
     setAosKeys(randomAos);
   };
 
-  // ✅ Lần đầu mount
+  // ✅ Init
   useEffect(() => {
     randomizeImages();
     AOS.init();
     AOS.refresh();
   }, []);
 
-  // ✅ Khi đổi ảnh, refresh lại AOS để kích hoạt animation mới
+  // ✅ Refresh lại AOS khi có ảnh mới
   useEffect(() => {
-    if (images.length) AOS.refresh();
+    if (images.length) setTimeout(() => AOS.refreshHard(), 100);
   }, [images]);
 
   return (
     <div className="relative w-full mx-auto max-w-[600px] overflow-hidden py-10 px-4 lg:py-16">
       {/* === Tiêu đề === */}
       <h3
-        className="text-[22px] md:text-[32px] lg:text-[40px] text-[#6fa322] uppercase font-family text-center mb-10 tracking-wider drop-shadow-[1px_1px_2px_rgba(0,0,0,0.25)]"
+        className="text-[22px] md:text-[32px] lg:text-[40px] text-[#6fa322] uppercase font-family text-center mb-10 tracking-wider"
         data-aos="fade-in"
       >
         Album Hình Cưới
@@ -73,14 +130,14 @@ export default function Album() {
           {images.map((src, index) => (
             <div
               key={`${src}-${index}`}
-              className="relative overflow-hidden rounded-2xl shadow-md hover:shadow-2xl transition-all cursor-pointer break-inside-avoid group will-change-transform mb-3"
+              className="relative overflow-hidden rounded-2xl shadow-md transition-all cursor-default break-inside-avoid group will-change-transform mb-3"
               data-aos={aosKeys[index]?.aos}
               data-aos-delay={aosKeys[index]?.delay}
             >
               <img
                 src={src}
                 alt={`Wedding ${index + 1}`}
-                className="w-full h-auto object-cover transform-gpu transition-transform duration-700"
+                className="w-full h-auto object-cover transform-gpu transition-transform duration-700 pointer-events-none select-none"
                 loading="lazy"
                 decoding="async"
               />
@@ -91,7 +148,6 @@ export default function Album() {
 
       {/* === Nút xem thêm === */}
       <GalleryPopup images={allImages} />
-
     </div>
   );
 }

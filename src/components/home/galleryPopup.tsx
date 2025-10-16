@@ -72,7 +72,7 @@ export default function galleryPopup({ images, triggerText = "Xem thêm ảnh" }
             {/* Trigger button */}
             <button
                 onClick={openPopup}
-                className="flex items-center gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition"
+                className="flex items-center uppercase gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition"
                 data-aos="fade-up"
                 data-aos-duration="1500"
             >
