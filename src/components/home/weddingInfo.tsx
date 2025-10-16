@@ -103,12 +103,6 @@ export default function Event(props: IEventProps) {
                     >
                         NĂM 2025
                     </div>
-
-                    <div
-                        className="hidden sm:block w-16 border-t border-[#6fa322]"
-                        data-aos="zoom-in"
-                        data-aos-delay="600"
-                    />
                 </div>
 
                 {/* Ngày âm lịch */}

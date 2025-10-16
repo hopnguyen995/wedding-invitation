@@ -3,7 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import flower from "../../assets/images/imgSvg/flower-small.svg";
 import outro from "../../assets/images/imgSvg/bottom-outro.svg";
-import intro from "../../assets/images/imgSvg/c1e8r301-2.svg";
+import intro from "../../assets/images/imgSvg/flower.svg";
 import { useAutoWrapText } from "../../hooks/useAutoWrapText";
 
 export interface IEventProps {
@@ -106,11 +106,6 @@ export default function Event({ groom }: IEventProps) {
           >
             NĂM 2025
           </div>
-          <div
-            className="hidden sm:block w-16 border-t border-[#6fa322]"
-            data-aos="zoom-in"
-            data-aos-delay="600"
-          />
         </div>
 
         <p
