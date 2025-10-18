@@ -1,36 +1,16 @@
-import { useState, useEffect } from "react";
+import { useCountdown } from "../hooks/useCountdown";
 
 const CountdownTimer = () => {
-  const targetDate = new Date("2025-11-08T00:00:00").getTime();
+  const timeLeft = useCountdown();
 
-  const formatNumber = (number: number) => {
-    return number.toString().padStart(2, "0");
-  };
+  if (!timeLeft) return null; // Ẩn khi hết thời gian
 
-  const calculateTimeLeft = () => {
-    const now = new Date().getTime();
-    const difference = targetDate - now;
-    if (difference <= 0) {
-      return { days: "00", hours: "00", minutes: "00", seconds: "00" };
-    }
-    const days = formatNumber(Math.floor(difference / (1000 * 60 * 60 * 24)));
-    const hours = formatNumber(Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-    const minutes = formatNumber(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)));
-    const seconds = formatNumber(Math.floor((difference % (1000 * 60)) / 1000));
-    return { days, hours, minutes, seconds };
-  };
-
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
-
-  useEffect(() => {
-    const timerInterval = setInterval(() => {
-      setTimeLeft(calculateTimeLeft);
-    }, 1000);
-
-    return () => {
-      clearInterval(timerInterval);
-    };
-  }, [targetDate]);
+  const timeUnits = [
+    { label: "Ngày", value: timeLeft.days },
+    { label: "Giờ", value: timeLeft.hours },
+    { label: "Phút", value: timeLeft.minutes },
+    { label: "Giây", value: timeLeft.seconds },
+  ];
 
   return (
     <div className="section-countdown h-[250px]">
@@ -40,22 +20,15 @@ const CountdownTimer = () => {
           <p className="text-[36px] lg:text-[60px]">The big day</p>
         </div>
         <div className="flex gap-3">
-          <div className="bg-[#f3f2ea]/80 flex flex-col items-center bg-timeblock-rgba w-[70px] h-[100px] p-2 border-4 border-solid border-[#ccc] rounded-md">
-            <p className="font-medium text-[30px] text-[#6fa322]">{timeLeft.days}</p>
-            <p className="text-[#6fa322]">Ngày</p>
-          </div>
-          <div className="bg-[#f3f2ea]/80 flex flex-col items-center bg-timeblock-rgba w-[70px] h-[100px] p-2 border-4 border-solid border-[#ccc] rounded-md">
-            <p className="font-medium text-[30px] text-[#6fa322]">{timeLeft.hours}</p>
-            <p className="text-[#6fa322]">Giờ</p>
-          </div>
-          <div className="bg-[#f3f2ea]/80 flex flex-col items-center bg-timeblock-rgba w-[70px] h-[100px] p-2 border-4 border-solid border-[#ccc] rounded-md">
-            <p className="font-medium text-[30px] text-[#6fa322]">{timeLeft.minutes}</p>
-            <p className="text-[#6fa322]">Phút</p>
-          </div>
-          <div className="bg-[#f3f2ea]/80 flex flex-col items-center bg-timeblock-rgba w-[70px] h-[100px] p-2 border-4 border-solid border-[#ccc] rounded-md">
-            <p className="font-medium text-[30px] text-[#6fa322]">{timeLeft.seconds}</p>
-            <p className="text-[#6fa322]">Giây</p>
-          </div>
+          {timeUnits.map(({ label, value }) => (
+            <div
+              key={label}
+              className="bg-[#f3f2ea]/80 flex flex-col items-center w-[70px] h-[100px] p-2 border-4 border-solid border-[#ccc] rounded-md"
+            >
+              <p className="font-medium text-[30px] text-[#6fa322]">{value}</p>
+              <p className="text-[#6fa322]">{label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

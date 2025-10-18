@@ -5,6 +5,7 @@ import flower from "../../assets/images/imgSvg/flower-small.svg";
 import outro from "../../assets/images/imgSvg/bottom-outro.svg";
 import intro from "../../assets/images/imgSvg/flower.svg";
 import { useAutoWrapText } from "../../hooks/useAutoWrapText";
+import { useCountdown } from "../../hooks/useCountdown";
 
 export interface IEventProps {
   groom: boolean;
@@ -28,6 +29,10 @@ export default function Event({ groom }: IEventProps) {
     firstLine,
     { defaultFont: 14, minFont: 8 }
   );
+    const targetDate: Date = new Date(import.meta.env.VITE_EVENT_END)
+    const timeLeft = useCountdown(targetDate);
+
+    if(!timeLeft) return null
 
   return (
     <div className="relative w-full pb-6 px-4 overflow-hidden">

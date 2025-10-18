@@ -60,7 +60,7 @@ export default function WeddingFamilyInfo({ groom = true }: IWeddingFamilyInfoPr
     });
 
     return (
-        <div className="w-full max-w-[600px] mx-auto text-center font-family px-4 py-4">
+        <div className="relative overflow-hidden w-full max-w-[600px] mx-auto text-center font-family px-4 py-4">
             {/* === HÌNH ẢNH CÔ DÂU CHÚ RỂ === */}
             <div className="w-full overflow-hidden rounded-2xl shadow-md mb-6">
                 <Slider {...settings}>
@@ -69,7 +69,7 @@ export default function WeddingFamilyInfo({ groom = true }: IWeddingFamilyInfoPr
                             <img
                                 src={slide}
                                 alt={`Slide ${i + 1}`}
-                                className="w-full h-auto object-cover object-center animate-zoomIn"
+                                className="w-full ml-3 h-auto object-cover object-center animate-zoomIn"
                             />
                         </div>
                     ))}

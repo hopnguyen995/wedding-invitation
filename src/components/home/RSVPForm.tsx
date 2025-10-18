@@ -4,6 +4,7 @@ import React, { useState, FormEvent, ChangeEvent, useEffect } from 'react';
 import { motion } from "framer-motion";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useCountdown } from "../../hooks/useCountdown";
 
 // 🎯 Dán URL Web App Apps Script đã triển khai của bạn vào đây
 const RSVP_API_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz5Yb9EQfcMjS6mxcqOsiYftUrfkG5I1_BykLryZ8w4wrpfAxn0vQDZpSDTn4SaSjDuBw/exec';
@@ -20,6 +21,11 @@ const encode = (data: Record<string, string | 'Có' | 'Không' | ''>) => {
 }
 
 const RSVPForm: React.FC<IRSVPFormProps> = ({ groom }) => {
+    const targetDate: Date = new Date(import.meta.env.VITE_RSVP_END)
+    const timeLeft = useCountdown(targetDate);
+
+    if (!timeLeft) return null; // Ẩn khi hết thời gian
+
     interface FormData {
         tenCuaBan: string;
         loiChuc: string;
@@ -151,8 +157,8 @@ const RSVPForm: React.FC<IRSVPFormProps> = ({ groom }) => {
     return (
         <div
             className="relative w-full overflow-hidden py-10 px-4 lg:py-16"
-        data-aos="fade-up"
-          data-aos-duration="2000"
+            data-aos="fade-up"
+            data-aos-duration="2000"
         >
 
             <div

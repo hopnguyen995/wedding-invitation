@@ -137,12 +137,12 @@ body::-webkit-scrollbar-track {
       transform: scale(1.05);
     }
     100% {
-      transform: scale(1.1);
+      transform: scale(1.165);
     }
   }
 
   .animate-zoomIn {
-    animation: zoomIn 8s ease-in-out forwards;
+    animation: zoomIn 5s ease-in-out forwards;
     transition: transform 1.2s ease;
   }
 

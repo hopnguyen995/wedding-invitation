@@ -1,15 +1,16 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useAutoWrapText } from "../../hooks/useAutoWrapText";
+import { useCountdown } from "../../hooks/useCountdown";
 
 export interface IEventProps {
   groom: boolean;
 }
 
 export default function thankyou({ groom }: IEventProps) {
-    const containerRef = useRef<HTMLDivElement | null>(null);
-      const textRef = useRef<HTMLParagraphElement | null>(null);
-    const fullText = `CẢM ƠN VÌ ĐÃ LÀ MỘT PHẦN TRONG HÀNH TRÌNH NÀY"`;
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const textRef = useRef<HTMLParagraphElement | null>(null);
+  const fullText = `CẢM ƠN VÌ ĐÃ LÀ MỘT PHẦN TRONG HÀNH TRÌNH NÀY"`;
   const firstLine = `MỘT PHẦN TRONG HÀNH TRÌNH NÀY`;
   const { wrapLevel, fontSize } = useAutoWrapText(
     textRef,
@@ -18,6 +19,10 @@ export default function thankyou({ groom }: IEventProps) {
     firstLine,
     { defaultFont: 18, minFont: 8 }
   );
+
+  const targetDate: Date = new Date(import.meta.env.VITE_END)
+  const timeLeft = useCountdown(targetDate);
+
   return (
     <div className="relative py-12 flex items-center justify-center px-4 overflow-hidden">
 
@@ -31,7 +36,7 @@ export default function thankyou({ groom }: IEventProps) {
       >
         {/* Title */}
         <p ref={textRef} className="font-semibold text-[#6fa322] uppercase tracking-wide font-[Cormorant_Garamond]"
-        style={{ fontSize: `${fontSize}px` }}
+          style={{ fontSize: `${fontSize}px` }}
         >
           {wrapLevel === 1 ? (
             <>
@@ -51,18 +56,18 @@ export default function thankyou({ groom }: IEventProps) {
         {/* Paragraphs */}
         <div className="text-[14px] md:text-[16px] leading-relaxed text-gray-700 text-family space-y-5">
           <p>
-            Chúng tôi xin gửi lời cảm ơn chân thành và sâu sắc nhất đến toàn thể quý quan khách, người thân và bạn bè gần xa — 
-            những người đã luôn đồng hành, chia sẻ và gửi đến chúng tôi những lời chúc tốt đẹp nhất trong hành trình hướng đến 
+            Chúng tôi xin gửi lời cảm ơn chân thành và sâu sắc nhất đến toàn thể quý quan khách, người thân và bạn bè gần xa -
+            những người luôn đồng hành, chia sẻ và gửi đến chúng tôi những lời chúc tốt đẹp nhất trong hành trình hướng đến
             ngày trọng đại.
           </p>
 
           <p>
-            Dù quý vị sẽ hiện diện để cùng chung vui, hay vì khoảng cách và công việc mà không thể tham dự, 
+            Dù quý vị {timeLeft ? "sẽ" : "đã"} hiện diện để cùng chung vui, hay vì khoảng cách và công việc mà không thể tham dự,
             chúng tôi vẫn luôn cảm nhận được tình yêu thương và sự quan tâm nồng hậu của mọi người.
           </p>
 
           <p>
-            Mỗi lời chúc, mỗi tin nhắn, mỗi sự hiện diện — dù bằng bất kỳ hình thức nào — 
+            Mỗi lời chúc, mỗi tin nhắn, mỗi sự hiện diện dù bằng bất kỳ hình thức nào
             đều là niềm hạnh phúc to lớn và là món quà quý giá mà chúng tôi sẽ luôn trân trọng.
           </p>
 
