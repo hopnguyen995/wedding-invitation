@@ -134,10 +134,10 @@ body::-webkit-scrollbar-track {
   /* Zoom in chậm khi slide hiển thị */
   @keyframes zoomIn {
     0% {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
     100% {
-      transform: scale(1.165);
+      transform: scale(1.18);
     }
   }
 

@@ -23,6 +23,14 @@ export default function WeddingBox({ groom }: IWeddingBoxProps) {
     if (e.target === e.currentTarget) setIsOpen(false);
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isOpen]);
+
   return (
     <div
       className="relative w-full overflow-hidden flex flex-col justify-center items-center pt-4"
@@ -45,7 +53,7 @@ export default function WeddingBox({ groom }: IWeddingBoxProps) {
         {/* Nút gửi mừng */}
         <button
           onClick={() => setIsOpen(true)}
-          className="flex items-center gap-2 mx-auto mt-2 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition duration-300 shadow-md"
+          className="flex shadow-xl items-center gap-2 mx-auto mt-2 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition duration-300"
         >
           GỬI MỪNG CƯỚI
         </button>
@@ -58,7 +66,8 @@ export default function WeddingBox({ groom }: IWeddingBoxProps) {
           className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 px-4"
         >
           {/* Khung popup */}
-          <div className="relative bg-transparent animate-fadeIn">
+          <div className="relative bg-transparent"
+            data-aos="zoom-in">
             {/* Nút đóng */}
             <button
               onClick={() => setIsOpen(false)}

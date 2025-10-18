@@ -69,7 +69,7 @@ export default function WeddingFamilyInfo({ groom = true }: IWeddingFamilyInfoPr
                             <img
                                 src={slide}
                                 alt={`Slide ${i + 1}`}
-                                className="w-full ml-3 h-auto object-cover object-center animate-zoomIn"
+                                className="w-full ml-4 h-auto object-cover object-center animate-zoomIn"
                             />
                         </div>
                     ))}

@@ -10,10 +10,10 @@ interface GalleryPopupProps {
 }
 
 export default function galleryPopup({ images, triggerText = "Xem thêm ảnh" }: GalleryPopupProps) {
-      useEffect(() => {
+    useEffect(() => {
         AOS.init();
         AOS.refresh();
-      }, []);
+    }, []);
     const [isOpen, setIsOpen] = useState(false);
     const [current, setCurrent] = useState(0);
 
@@ -33,18 +33,9 @@ export default function galleryPopup({ images, triggerText = "Xem thêm ảnh" }
 
     useEffect(() => {
         if (isOpen) {
-            // Lưu lại scroll hiện tại
-            const scrollY = window.scrollY;
-            document.body.style.position = "fixed";
-            document.body.style.top = `-${scrollY}px`;
-            document.body.style.left = "0";
-            document.body.style.right = "0";
-            return () => {
-                // Khôi phục scroll khi đóng popup
-                document.body.style.position = "";
-                document.body.style.top = "";
-                window.scrollTo(0, scrollY);
-            };
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "";
         }
     }, [isOpen]);
 
@@ -72,7 +63,7 @@ export default function galleryPopup({ images, triggerText = "Xem thêm ảnh" }
             {/* Trigger button */}
             <button
                 onClick={openPopup}
-                className="flex items-center uppercase gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition"
+                className="flex shadow-xl items-center uppercase gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition"
                 data-aos="fade-up"
                 data-aos-duration="1500"
             >
@@ -138,8 +129,8 @@ export default function galleryPopup({ images, triggerText = "Xem thêm ảnh" }
                                     ref={i === current ? activeThumbRef : null}
                                     onClick={() => setCurrent(i)}
                                     className={`h-20 w-auto inline-block object-cover cursor-pointer transition-opacity duration-200 ${i === current
-                                            ? "ring-4 ring-white"
-                                            : "opacity-70 hover:opacity-100"
+                                        ? "ring-4 ring-white"
+                                        : "opacity-70 hover:opacity-100"
                                         }`}
                                     loading="lazy"
                                     decoding="async"

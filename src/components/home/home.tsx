@@ -1,5 +1,3 @@
-// src/pages/Home.tsx (hoặc src/components/Home.tsx)
-
 import CountdownTimer from "../countdownTimer";
 import MusicPlayer from "../music";
 import Event from "./event";
@@ -18,7 +16,6 @@ export default function Home(props: IHomeProps) {
   return (
     <div>
       <WeddingFamilyInfo groom={groom} />
-      
       <Event groom={groom} />
       <WeddingCalender />
       <WeddingInfo groom={groom} />
@@ -27,7 +24,6 @@ export default function Home(props: IHomeProps) {
       <WeddingBox groom={groom} />
       <Thankyou groom={groom} />
       <CountdownTimer />
-      {/* Music Player thường ở cuối hoặc được cố định (fixed) */}
       <MusicPlayer />
     </div>
   );

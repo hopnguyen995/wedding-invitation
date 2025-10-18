@@ -200,7 +200,7 @@ const RSVPForm: React.FC<IRSVPFormProps> = ({ groom }) => {
                             >
                                 <option value="" disabled>Bạn có thể đến tham dự chứ?</option>
                                 <option value="Có">Có, tôi sẽ tham dự</option>
-                                <option value="Không">Không, tôi không tham dự được</option>
+                                <option value="Không">Xin lỗi, tôi bận mất rồi</option>
                             </select>
                             <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-700 pointer-events-none">▼</span>
                         </motion.div>
@@ -216,7 +216,7 @@ const RSVPForm: React.FC<IRSVPFormProps> = ({ groom }) => {
                     {/* Nút Gửi/Cập Nhật */}
                     <motion.button
                         type="submit"
-                        className="flex items-center gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium rounded-full px-6 py-2transition p-1 text-lg font-bold uppercase transition duration-300 shadow-lg mt-6 bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex items-center gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium rounded-full px-6 py-2transition p-1 text-lg font-bold uppercase transition duration-300 shadow-xl mt-6 bg-white disabled:opacity-50 disabled:cursor-not-allowed"
                         style={{ color: PRIMARY_COLOR_TEXT }}
                         disabled={isSubmitting}
                         variants={itemVariants} initial="hidden" animate="visible" transition={{ delay: 0.8 }}

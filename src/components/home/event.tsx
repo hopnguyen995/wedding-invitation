@@ -151,7 +151,7 @@ export default function Event({ groom }: IEventProps) {
         </p>
 
         <button
-          className="flex items-center gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition"
+          className="flex shadow-xl items-center gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition"
           data-aos="zoom-in-up"
           data-aos-delay="1000"
           onClick={() =>
