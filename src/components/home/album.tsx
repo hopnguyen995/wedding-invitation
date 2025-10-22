@@ -19,9 +19,10 @@ const AOS_ANIMATIONS = [
 export default function Album() {
   const [images, setImages] = useState<string[]>([]);
   const [aosKeys, setAosKeys] = useState<{ aos: string; delay: number }[]>([]);
+  const [allImages, setAllImages] = useState<string[]>([]); // ✅ lưu toàn bộ ảnh
 
-  // ✅ Import ảnh chỉ 1 lần
-  const allImages = useMemo(
+  // 🧠 Dùng useMemo để đảm bảo chỉ import một lần
+  const importedImages = useMemo(
     () =>
       importAll(
         import.meta.glob("/src/assets/images/album/*.{webp,jpg,jpeg,png}", {
@@ -31,7 +32,7 @@ export default function Album() {
     []
   );
 
-  // ✅ Phân loại ảnh dọc/ngang
+  // ✅ Phân loại ảnh dọc/ngang (tạm thời cho 6 ảnh preload)
   const classifyImages = async (urls: string[]) => {
     const load = (src: string) =>
       new Promise<{ src: string; orientation: "portrait" | "landscape" }>(
@@ -49,10 +50,9 @@ export default function Album() {
     return Promise.all(urls.map(load));
   };
 
-  // ✅ Hàm random 6 ảnh (4 dọc + 2 ngang) + animation random + delay theo cặp
-  const randomizeImages = async () => {
-    const classified = await classifyImages(allImages);
-
+  // ✅ Random 6 ảnh (4 portrait + 2 landscape) để preload
+  const randomizePreloadImages = async () => {
+    const classified = await classifyImages(importedImages);
     const portraits = classified
       .filter((i) => i.orientation === "portrait")
       .map((i) => i.src);
@@ -60,38 +60,27 @@ export default function Album() {
       .filter((i) => i.orientation === "landscape")
       .map((i) => i.src);
 
+    let finalImages: string[] = [];
     if (portraits.length < 4 || landscapes.length < 2) {
-      console.warn("⚠️ Không đủ ảnh portrait/landscape, fallback random.");
-      const fallback = [...allImages].sort(() => 0.5 - Math.random()).slice(0, 6);
-      const randomAos = fallback.map((_, i) => ({
-        aos: AOS_ANIMATIONS[Math.floor(Math.random() * AOS_ANIMATIONS.length)],
-        delay: [0, 120, 240, 0, 120, 240][i], // delay theo cặp
-      }));
-      setImages(fallback);
-      setAosKeys(randomAos);
-      return;
+      // fallback random nếu không đủ
+      finalImages = [...importedImages].sort(() => 0.5 - Math.random()).slice(0, 6);
+    } else {
+      const selectedPortraits = portraits.sort(() => 0.5 - Math.random()).slice(0, 4);
+      const selectedLandscapes = landscapes.sort(() => 0.5 - Math.random()).slice(0, 2);
+      const group1 = [
+        selectedPortraits[0],
+        selectedPortraits[1],
+        selectedLandscapes[0],
+      ].sort(() => 0.5 - Math.random());
+      const group2 = [
+        selectedPortraits[2],
+        selectedPortraits[3],
+        selectedLandscapes[1],
+      ].sort(() => 0.5 - Math.random());
+      finalImages = [...group1, ...group2];
     }
 
-    // 🔹 Random chọn 4 ảnh dọc + 2 ngang
-    const selectedPortraits = portraits.sort(() => 0.5 - Math.random()).slice(0, 4);
-    const selectedLandscapes = landscapes.sort(() => 0.5 - Math.random()).slice(0, 2);
-
-    // 🔹 Phân nhóm 3-3 (mỗi nhóm có 1 ảnh ngang)
-    const group1 = [
-      selectedPortraits[0],
-      selectedPortraits[1],
-      selectedLandscapes[0],
-    ].sort(() => 0.5 - Math.random());
-
-    const group2 = [
-      selectedPortraits[2],
-      selectedPortraits[3],
-      selectedLandscapes[1],
-    ].sort(() => 0.5 - Math.random());
-
-    const finalImages = [...group1, ...group2];
-
-    // 🔹 Random animation và delay theo cặp index
+    // Animation theo cặp
     const delayPattern = [0, 120, 240, 0, 120, 240];
     const randomAos = finalImages.map((_, i) => ({
       aos: AOS_ANIMATIONS[Math.floor(Math.random() * AOS_ANIMATIONS.length)],
@@ -102,21 +91,44 @@ export default function Album() {
     setAosKeys(randomAos);
   };
 
-  // ✅ Init
+  // ✅ Khởi tạo preload 6 ảnh
   useEffect(() => {
-    randomizeImages();
+    randomizePreloadImages();
     AOS.init();
     AOS.refresh();
   }, []);
 
-  // ✅ Refresh lại AOS khi có ảnh mới
+  // ✅ Khi preload xong, lazy-load phần còn lại sau khi trang idle
   useEffect(() => {
-    if (images.length) setTimeout(() => AOS.refreshHard(), 100);
+    if (images.length === 0) return;
+
+    // chỉ tải khi trình duyệt rảnh rỗi (đảm bảo hiệu năng)
+    const loadRemaining = () => {
+      setTimeout(() => {
+        const remaining = importedImages.filter((img) => !images.includes(img));
+        remaining.forEach((src) => {
+          const img = new Image();
+          img.src = src; // tải ngầm
+        });
+        setAllImages(importedImages);
+        console.log(`🖼 Lazy loaded ${remaining.length} extra images.`);
+      }, 1000); // đợi 1s sau khi render xong
+    };
+
+    if ("requestIdleCallback" in window) {
+      (window as any).requestIdleCallback(loadRemaining);
+    } else {
+      loadRemaining();
+    }
+  }, [images]);
+
+  // ✅ Refresh lại animation khi đã có ảnh
+  useEffect(() => {
+    if (images.length) setTimeout(() => AOS.refreshHard(), 200);
   }, [images]);
 
   return (
     <div className="relative w-full mx-auto max-w-[600px] overflow-hidden py-10 px-4 lg:py-16">
-      {/* === Tiêu đề === */}
       <h3
         className="text-[22px] md:text-[32px] lg:text-[40px] text-[#6fa322] uppercase font-family text-center mb-10 tracking-wider"
         data-aos="fade-in"
@@ -124,7 +136,7 @@ export default function Album() {
         Album Hình Cưới
       </h3>
 
-      {/* === Layout ảnh === */}
+      {/* === 6 ảnh hiển thị trước === */}
       <div className="text-center" data-aos="fade-up">
         <div className="inline-block columns-2 sm:columns-3 gap-3 md:gap-4 space-y-3">
           {images.map((src, index) => (
@@ -138,16 +150,16 @@ export default function Album() {
                 src={src}
                 alt={`Wedding ${index + 1}`}
                 className="w-full h-auto object-cover transform-gpu transition-transform duration-700 pointer-events-none select-none"
-                loading="lazy"
-                decoding="async"
+                loading="eager" // preload
+                decoding="sync"
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* === Nút xem thêm === */}
-      <GalleryPopup images={allImages} />
+      {/* === Nút xem toàn bộ (hiện popup) === */}
+      <GalleryPopup images={allImages.length ? allImages : importedImages} />
     </div>
   );
 }

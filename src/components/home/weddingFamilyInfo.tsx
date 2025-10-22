@@ -5,9 +5,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useAutoWrapText } from "../../hooks/useAutoWrapText";
-import slide1 from "../../assets/images/slide/photo_1.webp";
-import slide2 from "../../assets/images/slide/photo_2.webp";
-import slide3 from "../../assets/images/slide/photo_3.webp";
+import slide1 from "../../assets/images/album/DXT08807.webp";
+import slide2 from "../../assets/images/album/KID02653.webp";
+import slide3 from "../../assets/images/album/KID01919.webp";
 
 export interface IWeddingFamilyInfoProps {
     groom?: boolean;
