@@ -1,1 +1,0 @@
-const a="/wedding-invitation/bride/assets/9 Chm Hoa-nFc4-S5y.mp3";export{a as default};
