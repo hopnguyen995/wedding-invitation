@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5173:5173"
+    volumes:
+      # Mount source for hot-reload; keep container's node_modules
+      - .:/app
+      - /app/node_modules
+    environment:
+      # Make Vite's file watcher work reliably inside Docker on macOS
+      - CHOKIDAR_USEPOLLING=true
+    command: npm run dev -- --host 0.0.0.0

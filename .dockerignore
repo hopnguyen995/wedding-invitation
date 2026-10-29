@@ -1,0 +1,6 @@
+node_modules
+dist
+dist-bride
+dist-groom
+.git
+.DS_Store
