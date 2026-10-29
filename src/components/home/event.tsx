@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import Reveal from "../reveal";
 import flower from "../../assets/images/imgSvg/flower-small.svg";
 import outro from "../../assets/images/imgSvg/bottom-outro.svg";
 import intro from "../../assets/images/imgSvg/flower.svg";
@@ -15,10 +15,6 @@ export default function Event({ groom }: IEventProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLParagraphElement | null>(null);
 
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
   const fullText = `THAM DỰ BỮA TIỆC THÂN MẬT CÙNG GIA ĐÌNH CHÚNG TÔI VÀO LÚC ${groom ? "17 GIỜ 00 PHÚT" : "11 GIỜ 30 PHÚT"
     }`;
   const firstLine = `THAM DỰ BỮA TIỆC THÂN MẬT CÙNG GIA ĐÌNH CHÚNG TÔI`;
@@ -40,31 +36,35 @@ export default function Event({ groom }: IEventProps) {
         ref={containerRef}
         className="relative w-full max-w-[650px] mx-auto text-center text-[#6fa322]"
       >
-        <img
+        <Reveal
+          as="img"
+          anim="zoom-in"
+          delay={0.6}
           src={intro}
           alt="flower"
           className="w-30 mx-auto mb-10"
-          data-aos="zoom-in"
-          data-aos-delay="600"
         />
 
         {/* === Lời mời === */}
-        <p
+        <Reveal
+          as="p"
+          anim="fade-up"
+          duration={1.5}
           className="md:text-base uppercase tracking-wider font-medium leading-relaxed"
           style={{ fontSize: `${fontSize}px`, fontWeight: "bold" }}
-          data-aos="fade-up"
-          data-aos-duration="1500"
         >
           TRÂN TRỌNG KÍNH MỜI
-        </p>
+        </Reveal>
 
         {/* === Text chia dòng hoặc scale === */}
-        <p
+        <motion.p
           ref={textRef}
-          className="uppercase tracking-wider font-medium mb-6 leading-relaxed whitespace-pre-line transition-all duration-300"
+          className="uppercase tracking-wider font-medium mb-6 leading-relaxed whitespace-pre-line transition-[font-size] duration-300"
           style={{ fontSize: `${fontSize}px` }}
-          data-aos="fade-up"
-          data-aos-duration="1500"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
         >
           {wrapLevel === 1 ? (
             <>
@@ -77,83 +77,92 @@ export default function Event({ groom }: IEventProps) {
               VÀO LÚC {groom ? "17 GIỜ 00 PHÚT" : "11 GIỜ 30 PHÚT"}
             </>
           )}
-        </p>
+        </motion.p>
 
         {/* === Ngày giờ === */}
-        <p
+        <Reveal
+          as="p"
+          anim="fade-up"
+          duration={1.5}
           className="text-sm md:text-sm font-semibold tracking-widest mb-3"
-          data-aos="fade-up"
-          data-aos-duration="1500"
         >
           {groom ? "THỨ BẢY" : "THỨ SÁU"}
-        </p>
+        </Reveal>
 
         <div className="flex items-center justify-center space-x-4 mb-2">
-          
-          <div
+
+          <Reveal
+            as="div"
+            anim="fade-right"
+            duration={1.5}
             className="text-sm md:text-base font-medium tracking-wider"
-            data-aos="fade-right"
-            data-aos-duration="1500"
           >
             THÁNG 11
-          </div>
-          <div
+          </Reveal>
+          <Reveal
+            as="div"
+            anim="fade-up"
+            duration={1.5}
             className="text-6xl md:text-7xl font-bold text-[#6fa322] leading-none drop-shadow-sm"
-            data-aos="fade-up"
-            data-aos-duration="1500"
           >
             {groom ? "08" : "07"}
-          </div>
-          <div
+          </Reveal>
+          <Reveal
+            as="div"
+            anim="fade-left"
+            duration={1.5}
             className="text-sm md:text-base font-medium tracking-wider"
-            data-aos="fade-left"
-            data-aos-duration="1500"
           >
             NĂM 2025
-          </div>
+          </Reveal>
         </div>
 
-        <p
+        <Reveal
+          as="p"
+          anim="fade-up"
+          duration={1.5}
           className="text-xs md:text-sm italic text-[#6fa322]/80 mb-2"
-          data-aos="fade-up"
-          data-aos-duration="1500"
         >
           {groom
             ? "(Tức ngày 19 tháng 9 năm Ất Tỵ)"
             : "(Tức ngày 18 tháng 9 năm Ất Tỵ)"}
-        </p>
+        </Reveal>
 
-        <img
+        <Reveal
+          as="img"
+          anim="zoom-in"
+          delay={0.6}
           src={flower}
           alt="flower"
           className="w-20 mx-auto my-4"
-          data-aos="zoom-in"
-          data-aos-delay="600"
         />
 
-        <h2
+        <Reveal
+          as="h2"
+          anim="fade-up"
+          duration={1.5}
           className="text-lg tracking-wide font-semibold uppercase mb-1"
-          data-aos="fade-up"
-          data-aos-duration="1500"
         >
           TẠI {groom ? "TƯ GIA NHÀ TRAI" : "NHÀ HÀNG VIỆT NAM"}
-        </h2>
+        </Reveal>
 
-        <p
+        <Reveal
+          as="p"
+          anim="fade-up"
+          duration={1.5}
           className="text-sm md:text-sm text-[#6fa322]"
-          data-aos="fade-up"
-          data-aos-duration="1500"
         >
           Địa chỉ:{" "}
           {groom
             ? "Xã Hát Môn, Phúc Thọ, Hà Nội"
             : "Số 15 Ngõ 2 Quang Trung, Hà Đông, Hà Nội"}
-        </p>
+        </Reveal>
 
-        <button
-          className="flex shadow-xl items-center gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition"
-          data-aos="zoom-in-up"
-          data-aos-delay="1000"
+        <Reveal
+          as="button"
+          anim="zoom-in-up"
+          delay={1}
+          className="flex shadow-xl items-center gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition-colors"
           onClick={() =>
             window.open(
               groom
@@ -183,14 +192,15 @@ export default function Event({ groom }: IEventProps) {
             />
           </svg>
           CHỈ ĐƯỜNG
-        </button>
+        </Reveal>
 
-        <img
+        <Reveal
+          as="img"
+          anim="zoom-in"
+          delay={0.6}
           src={outro}
           alt="flower"
           className="w-30 mx-auto mt-6"
-          data-aos="zoom-in"
-          data-aos-delay="600"
         />
       </div>
     </div>

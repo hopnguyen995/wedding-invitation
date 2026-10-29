@@ -1,6 +1,6 @@
-import { useEffect, useRef } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import Reveal from "../reveal";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,11 +14,6 @@ export interface IWeddingFamilyInfoProps {
 }
 
 export default function WeddingFamilyInfo({ groom = true }: IWeddingFamilyInfoProps) {
-    useEffect(() => {
-        AOS.init();
-        AOS.refresh();
-    }, []);
-
     const settings = {
         dots: false,
         infinite: true,
@@ -79,16 +74,18 @@ export default function WeddingFamilyInfo({ groom = true }: IWeddingFamilyInfoPr
             {/* === KHUNG CHUNG === */}
             <div ref={containerRef} className="py-5">
                 {/* === Tên cô dâu & chú rể === */}
-                <h3
+                <motion.h3
                     ref={textRef}
-                    className="pinyon-script-regular font-bold text-[#6fa322] leading-tight transition-all duration-300"
+                    className="pinyon-script-regular font-bold text-[#6fa322] leading-tight transition-[font-size] duration-300"
                     style={{
                         fontSize: `${fontSize}px`,
                         textShadow:
                             "2px 2px 6px rgba(0, 0, 0, 0.25), 0 0 8px rgba(111, 163, 34, 0.3)",
                     }}
-                    data-aos="zoom-in"
-                    data-aos-duration="1500"
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
                 >
 
                     {wrapLevel === 1 ? (
@@ -102,35 +99,35 @@ export default function WeddingFamilyInfo({ groom = true }: IWeddingFamilyInfoPr
                             <div>{groom ? brideName : groomName}</div>
                         </>
                     )}
-                </h3>
+                </motion.h3>
 
                 {/* Hai bên nhà */}
                 <div className="flex mt-4 pt-4 justify-between items-start text-center text-[14px] md:text-[16px]">
                     {/* Bên trái */}
-                    <div
+                    <Reveal
+                        anim="fade-right"
+                        duration={1.5}
                         className="flex-1 min-w-0 pr-4 whitespace-nowrap overflow-hidden text-ellipsis"
-                        data-aos="fade-right"
-                        data-aos-duration="1500"
                     >
                         <h4 className="font-semibold text-[#6fa322] uppercase mb-1 truncate">
                             {leftInfo.title}
                         </h4>
                         <p className="text-[#6fa322] truncate">{leftInfo.name}</p>
                         <p className="text-[#6fa322] truncate">{leftInfo.wife}</p>
-                    </div>
+                    </Reveal>
 
                     {/* Bên phải */}
-                    <div
+                    <Reveal
+                        anim="fade-left"
+                        duration={1.5}
                         className="flex-1 min-w-0 pl-4 whitespace-nowrap overflow-hidden text-ellipsis"
-                        data-aos="fade-left"
-                        data-aos-duration="1500"
                     >
                         <h4 className="font-semibold text-[#6fa322] uppercase mb-1 truncate">
                             {rightInfo.title}
                         </h4>
                         <p className="text-[#6fa322] truncate">{rightInfo.name}</p>
                         <p className="text-[#6fa322] truncate">{rightInfo.wife}</p>
-                    </div>
+                    </Reveal>
                 </div>
             </div>
         </div>

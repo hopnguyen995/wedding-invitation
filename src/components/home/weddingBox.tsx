@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import Reveal from "../reveal";
 import WeddingBoxItem from "./weddingBoxItem";
 import giftbox from "../../assets/images/imgSvg/giftbox.svg";
 import QRcode1 from "../../assets/images/qrCode/qr_1.webp";
@@ -12,11 +11,6 @@ export interface IWeddingBoxProps {
 
 export default function WeddingBox({ groom }: IWeddingBoxProps) {
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
 
   // Click ra ngoài để đóng popup
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -46,17 +40,18 @@ export default function WeddingBox({ groom }: IWeddingBoxProps) {
     >
 
       {/* Nội dung chính */}
-      <div
+      <Reveal
+        anim="fade-up"
         className="relative z-10 flex flex-col items-center justify-center text-center"
-        data-aos="fade-up"
       >
         {/* Ảnh giftbox */}
-        <img
+        <Reveal
+          as="img"
+          anim="zoom-in"
+          delay={0.4}
           src={giftbox}
           alt="giftbox"
           className="w-28 md:w-32 mx-auto mb-1"
-          data-aos="zoom-in"
-          data-aos-delay="400"
         />
 
         {/* Nút gửi mừng */}
@@ -66,7 +61,7 @@ export default function WeddingBox({ groom }: IWeddingBoxProps) {
         >
           GỬI MỪNG CƯỚI
         </button>
-      </div>
+      </Reveal>
 
       {/* Popup overlay */}
       {isOpen && (
@@ -75,8 +70,7 @@ export default function WeddingBox({ groom }: IWeddingBoxProps) {
           className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 px-4"
         >
           {/* Khung popup */}
-          <div className="relative bg-transparent"
-            data-aos="zoom-in">
+          <Reveal as="div" anim="zoom-in" className="relative bg-transparent">
             {/* Nút đóng */}
             <button
               onClick={() => setIsOpen(false)}
@@ -87,7 +81,7 @@ export default function WeddingBox({ groom }: IWeddingBoxProps) {
 
             {/* Nội dung WeddingBoxItem */}
             <WeddingBoxItem QRCode={groom ? QRcode1 : QRcode2} groom={groom} />
-          </div>
+          </Reveal>
         </div>
       )}
     </div>

@@ -1,7 +1,5 @@
 import { motion } from "framer-motion";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { useEffect } from "react";
+import Reveal from "../reveal";
 
 export default function NovemberCalendar() {
   const daysInMonth = 30;
@@ -12,22 +10,17 @@ export default function NovemberCalendar() {
     i < startDay ? "" : i - startDay + 1
   );
 
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
-
   return (
     <div className="relative w-full overflow-hidden py-10 px-4 lg:py-16">
       {/* Calendar container */}
-      <div
-        className="relative z-10 flex flex-col items-center justify-center 
-        mx-auto bg-gradient-to-br from-[#6fa322]/90 to-[#8fbf44]/90 
+      <Reveal
+        anim="fade-up"
+        duration={1.5}
+        className="relative z-10 flex flex-col items-center justify-center
+        mx-auto bg-gradient-to-br from-[#6fa322]/90 to-[#8fbf44]/90
         text-white text-family rounded-3xl shadow-xl
         border border-white/30 backdrop-blur-md
         w-full max-w-[400px] md:max-w-[500px] p-6"
-        data-aos="fade-up"
-        data-aos-duration="1500"
       >
         {/* Title */}
         <motion.h1
@@ -101,7 +94,7 @@ export default function NovemberCalendar() {
         <p className="mt-6 text-white/80 italic text-sm md:text-base">
           Save the date — <span className="font-bold text-white">08.11.2025</span>
         </p>
-      </div>
+      </Reveal>
     </div>
   );
 }

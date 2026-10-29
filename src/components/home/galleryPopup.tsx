@@ -1,8 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import Reveal from "../reveal";
 
 interface GalleryPopupProps {
   images: string[];
@@ -18,11 +17,6 @@ export default function GalleryPopup({
 
   const thumbnailsRef = useRef<HTMLDivElement>(null);
   const activeThumbRef = useRef<HTMLImageElement | null>(null);
-
-  useEffect(() => {
-    AOS.init();
-    AOS.refresh();
-  }, []);
 
   const openPopup = () => setIsOpen(true);
   const closePopup = () => setIsOpen(false);
@@ -102,14 +96,15 @@ export default function GalleryPopup({
   return (
     <>
       {/* Trigger button */}
-      <button
+      <Reveal
+        as="button"
+        anim="fade-up"
+        duration={1.5}
         onClick={openPopup}
-        className="flex shadow-xl items-center uppercase gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition"
-        data-aos="fade-up"
-        data-aos-duration="1500"
+        className="flex shadow-xl items-center uppercase gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium border border-[#6fa322] rounded-full px-6 py-2 hover:bg-[#6fa322]/90 hover:text-white transition-colors"
       >
         {triggerText}
-      </button>
+      </Reveal>
 
       <AnimatePresence>
         {isOpen && (

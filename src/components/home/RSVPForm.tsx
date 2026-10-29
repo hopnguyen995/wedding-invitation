@@ -2,8 +2,7 @@
 
 import React, { useState, FormEvent, ChangeEvent, useEffect } from 'react';
 import { motion } from "framer-motion";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import Reveal from "../reveal";
 import Swal from "sweetalert2"; // 🧩 Thêm SweetAlert2
 import "sweetalert2/dist/sweetalert2.min.css";
 import { useCountdown } from "../../hooks/useCountdown";
@@ -49,9 +48,6 @@ const RSVPForm: React.FC<IRSVPFormProps> = ({ groom }) => {
 
     // --- EFFECT: load dữ liệu đã lưu ---
     useEffect(() => {
-        AOS.init();
-        AOS.refresh();
-
         const submitted = localStorage.getItem(STORAGE_KEY);
         const savedFormId = localStorage.getItem(`formId_${STORAGE_KEY}`);
 
@@ -176,10 +172,10 @@ const RSVPForm: React.FC<IRSVPFormProps> = ({ groom }) => {
     const PRIMARY_COLOR_TEXT = '#6fa322';
 
     return (
-        <div
+        <Reveal
+            anim="fade-up"
+            duration={2}
             className="relative w-full overflow-hidden py-10 px-4 lg:py-16"
-            data-aos="fade-up"
-            data-aos-duration="2000"
         >
             <div
                 className="relative z-10 flex flex-col items-center justify-center 
@@ -244,7 +240,7 @@ const RSVPForm: React.FC<IRSVPFormProps> = ({ groom }) => {
 
                     <motion.button
                         type="submit"
-                        className="flex items-center gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium rounded-full px-6 py-2 transition p-1 text-lg font-bold uppercase transition duration-300 shadow-xl mt-6 bg-white disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="flex items-center gap-2 mx-auto mt-5 bg-[#6fa322] text-[#f5efed] font-medium rounded-full px-6 py-2 p-1 text-lg font-bold uppercase transition-colors duration-300 shadow-xl mt-6 bg-white disabled:opacity-50 disabled:cursor-not-allowed"
                         style={{ color: PRIMARY_COLOR_TEXT }}
                         disabled={isSubmitting}
                         variants={itemVariants} initial="hidden" animate="visible" transition={{ delay: 0.8 }}
@@ -258,7 +254,7 @@ const RSVPForm: React.FC<IRSVPFormProps> = ({ groom }) => {
                     </motion.button>
                 </form>
             </div>
-        </div>
+        </Reveal>
     );
 }
 

@@ -53,28 +53,50 @@ export default function Album() {
             ratio: img.width / img.height,
           });
         };
+        // Tránh treo Promise nếu 1 ảnh lỗi: trả tỉ lệ mặc định (dọc)
+        img.onerror = () =>
+          resolve({ src, orientation: "portrait", ratio: 0.75 });
         img.src = src;
       });
     return Promise.all(urls.map(load));
   };
 
-  // ✅ Random 6 ảnh (4 portrait + 2 landscape) để preload
+  // ✅ Chọn 6 ảnh (4 portrait + 2 landscape) nhưng CHỈ tải vừa đủ để phân loại,
+  // thay vì tải toàn bộ 30 ảnh lúc mount → nhẹ tải lần đầu rõ rệt.
   const randomizePreloadImages = async () => {
-    const classified = await classifyImages(importedImages);
-    const portraits = classified
-      .filter((i) => i.orientation === "portrait")
-      .map((i) => i.src);
-    const landscapes = classified
-      .filter((i) => i.orientation === "landscape")
-      .map((i) => i.src);
+    const shuffled = shuffle(importedImages);
+    const ratioMap: Record<string, number> = {};
+    const portraits: string[] = [];
+    const landscapes: string[] = [];
 
-    let finalImages: string[] = [];
+    // Phân loại theo từng lô nhỏ, dừng ngay khi đã đủ 4 dọc + 2 ngang
+    const BATCH = 6;
+    for (
+      let i = 0;
+      i < shuffled.length && (portraits.length < 4 || landscapes.length < 2);
+      i += BATCH
+    ) {
+      const classified = await classifyImages(shuffled.slice(i, i + BATCH));
+      for (const c of classified) {
+        ratioMap[c.src] = c.ratio;
+        if (c.orientation === "portrait") portraits.push(c.src);
+        else landscapes.push(c.src);
+      }
+    }
+
+    let finalImages: string[];
     if (portraits.length < 4 || landscapes.length < 2) {
-      // fallback random nếu không đủ
-      finalImages = shuffle(importedImages).slice(0, 6);
+      // fallback: không đủ dọc/ngang → lấy 6 ảnh bất kỳ, đảm bảo có tỉ lệ
+      finalImages = shuffled.slice(0, 6);
+      const missing = finalImages.filter((s) => !(s in ratioMap));
+      if (missing.length) {
+        (await classifyImages(missing)).forEach(
+          (c) => (ratioMap[c.src] = c.ratio)
+        );
+      }
     } else {
-      const selectedPortraits = shuffle(portraits).slice(0, 4);
-      const selectedLandscapes = shuffle(landscapes).slice(0, 2);
+      const selectedPortraits = portraits.slice(0, 4);
+      const selectedLandscapes = landscapes.slice(0, 2);
       // Mỗi group = 2 dọc + 1 ngang, shuffle để vị trí ảnh ngang trong cột là ngẫu nhiên
       const group1 = shuffle([
         selectedPortraits[0],
@@ -92,10 +114,6 @@ export default function Album() {
     // Stagger theo cặp (giây) cho hiệu ứng fade-up đều, không trượt ngang
     const delayPattern = [0, 0.12, 0.24, 0, 0.12, 0.24];
     const finalDelays = finalImages.map((_, i) => delayPattern[i] ?? 0);
-
-    // Lưu tỉ lệ để khung ảnh chừa sẵn chiều cao, tránh reflow khi ảnh load xong
-    const ratioMap: Record<string, number> = {};
-    classified.forEach((c) => (ratioMap[c.src] = c.ratio));
 
     setRatios(ratioMap);
     setImages(finalImages);

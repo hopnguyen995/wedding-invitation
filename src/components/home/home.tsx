@@ -1,14 +1,17 @@
-import { useMemo } from "react";
-import CountdownTimer from "../countdownTimer";
+import { useMemo, lazy, Suspense } from "react";
 import MusicPlayer from "../music";
+import WeddingFamilyInfo from "./weddingFamilyInfo";
 import Event from "./event";
 import WeddingCalender from "./weddingCalendar";
-import Album from "./album";
-import WeddingBox from "./weddingBox";
 import WeddingInfo from "./weddingInfo";
-import WeddingFamilyInfo from "./weddingFamilyInfo";
-import RSVPForm from "./RSVPForm"; 
-import Thankyou from "./thankyou"; 
+
+// ⏬ Các phần dưới màn hình đầu → tách chunk, tải sau để nhẹ bundle lần đầu
+// (RSVPForm kéo theo sweetalert2, Album kéo theo nhiều ảnh...)
+const Album = lazy(() => import("./album"));
+const RSVPForm = lazy(() => import("./RSVPForm"));
+const WeddingBox = lazy(() => import("./weddingBox"));
+const Thankyou = lazy(() => import("./thankyou"));
+const CountdownTimer = lazy(() => import("../countdownTimer"));
 
 export interface IHomeProps { groom: boolean; }
 
@@ -27,11 +30,13 @@ export default function Home({ groom }: IHomeProps) {
       <Event groom={groom} />
       <WeddingCalender />
       <WeddingInfo groom={groom} />
-      <Album />
-      <RSVPForm groom={groom} />
-      {showBox && <WeddingBox groom={groom} />}
-      <Thankyou groom={groom} />
-      <CountdownTimer />
+      <Suspense fallback={null}>
+        <Album />
+        <RSVPForm groom={groom} />
+        {showBox && <WeddingBox groom={groom} />}
+        <Thankyou groom={groom} />
+        <CountdownTimer />
+      </Suspense>
       <MusicPlayer />
     </div>
   );

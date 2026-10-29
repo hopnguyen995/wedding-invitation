@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback, memo } from "react";
+import { Play, Pause } from "lucide-react";
 
 // 🎵 Nút Play/Pause (memo tránh re-render)
 const PlayButton = memo(
@@ -17,9 +18,9 @@ const PlayButton = memo(
       hidden={!isReady}
     >
       {isPlaying ? (
-        <i className="fas fa-pause"></i>
+        <Pause size={16} fill="currentColor" />
       ) : (
-        <i className="fas fa-play"></i>
+        <Play size={16} fill="currentColor" />
       )}
     </button>
   )
